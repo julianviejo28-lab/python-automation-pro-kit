@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Guía para revisar, limpiar y combinar archivos CSV con Python. Prueba gratis un auditor de celdas vacías, duplicados y filas mal formadas.">
+  <link rel="canonical" href="https://julianviejo28-lab.github.io/python-automation-pro-kit/limpiar-csv-python.html">
+  <meta property="og:title" content="Limpiar CSV con Python">
+  <meta property="og:description" content="Revisa CSV, detecta valores faltantes y combina archivos con Python.">
+  <title>Limpiar CSV con Python | Guía gratuita</title>
+  <style>
+    :root{color-scheme:dark;--bg:#101827;--panel:#172338;--ink:#eff5ff;--muted:#b4c1d4;--green:#73e0b1;--line:#30415b}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 system-ui,sans-serif}.wrap{width:min(800px,calc(100% - 32px));margin:auto}header,footer{padding:20px 0;border-bottom:1px solid var(--line)}footer{border-top:1px solid var(--line);border-bottom:0;margin-top:40px;color:var(--muted)}a{color:var(--green)}h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1.1}.lead,.muted{color:var(--muted)}main{padding:34px 0}pre{overflow:auto;background:#0b1220;border:1px solid var(--line);border-radius:10px;padding:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;margin:26px 0}.button{display:inline-block;background:var(--green);color:#092218;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:750}.eyebrow{text-transform:uppercase;letter-spacing:.1em;color:var(--green);font-size:.8rem}
+  </style>
+</head>
+<body>
+  <header><div class="wrap"><a href="./">Python Automation Pro Kit</a> · <a href="./#guias">Más guías</a></div></header>
+  <main class="wrap">
+    <article>
+      <p class="eyebrow">Guía gratuita · Python 3</p>
+      <h1>Cómo limpiar y combinar CSV con Python</h1>
+      <p class="lead">Antes de combinar reportes, comprueba el separador, las celdas vacías y las filas duplicadas. El auditor CSV gratuito muestra un resumen y no modifica tus archivos.</p>
+      <section class="card">
+        <h2>Prueba el auditor sin instalar nada</h2>
+        <p>Abre el cuaderno con datos sintéticos en Kaggle o descarga la muestra MIT para ejecutarla localmente:</p>
+        <p><a class="button" href="https://www.kaggle.com/code/salmaviejo/csv-audit-with-python-missing-cells-and-duplicates" target="_blank" rel="noopener noreferrer">Abrir demo en Kaggle</a></p>
+        <p><a href="https://raw.githubusercontent.com/julianviejo28-lab/python-automation-pro-kit/main/demo/csv_audit_preview.zip">Descargar muestra gratis</a></p>
+      </section>
+      <h2>Combina varios archivos en uno nuevo</h2>
+      <p>El limpiador del kit detecta separadores comunes, une columnas y puede quitar duplicados por una columna elegida. El archivo de salida se crea aparte; conserva los originales hasta revisar el resultado.</p>
+      <pre><code>python csv_merge_clean.py salida.csv enero.csv febrero.csv --dedupe-by email</code></pre>
+      <p class="muted">Compara el número de filas, encabezados y datos de salida antes de usar el archivo en un informe o importación.</p>
+      <section class="card">
+        <h2>Kit de automatización Python</h2>
+        <p>Además del limpiador CSV incluye organizador de archivos, renombrador, detector de duplicados, copias ZIP y alertas informativas. Guía bilingüe, pruebas y cero dependencias externas; $9 USD.</p>
+        <a class="button" href="https://t.me/Julian_sniper_bot?start=seo">Ver el kit en Telegram</a>
+      </section>
+      <section lang="en">
+        <h2>English: clean and merge CSV files</h2>
+        <p>Try the free read-only audit notebook, then combine files into a separate output: <code>python csv_merge_clean.py output.csv january.csv february.csv --dedupe-by email</code>. Keep the source files and review the result before importing it.</p>
+        <p><a href="https://www.kaggle.com/code/salmaviejo/csv-audit-with-python-missing-cells-and-duplicates">Open the free Kaggle demo</a> · <a href="https://t.me/Julian_sniper_bot?start=seo">See the $9 kit</a>.</p>
+      </section>
+    </article>
+  </main>
+  <footer><div class="wrap"><a href="./">Inicio</a> · <a href="./#guias">Guías</a></div></footer>
+</body>
+</html>

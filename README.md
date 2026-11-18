@@ -16,6 +16,14 @@ Envía solo el monto y la red exactos que muestre el bot. Las transferencias cri
 
 La página de producto está en [index.html](index.html).
 
+## Guías gratuitas
+
+- [Organizar Descargas con Python](organizar-descargas-python.html)
+- [Renombrar archivos en lote](renombrar-archivos-python.html)
+- [Limpiar y combinar CSV](limpiar-csv-python.html)
+- [Detectar archivos duplicados](detectar-duplicados-python.html)
+- [Crear copias ZIP rotativas](copias-seguridad-python.html)
+
 ---
 
 # Python Automation Pro Kit (English)
@@ -33,3 +41,11 @@ Six Python 3 utilities for file organization, bulk renaming, CSV cleanup, duplic
 Open [Julián | Python Automation on Telegram](https://t.me/Julian_sniper_bot?start=readme) and tap **Start**. The checkout currently supports USDT on TRON, BNB Smart Chain, or Arbitrum, plus TRX, SOL, and BTC.
 
 Send only the exact amount on the network shown by the bot. Crypto transfers can be irreversible. Never share a private key or seed phrase. The crypto alert only reads public prices; it does not trade or provide investment advice.
+
+## Free guides
+
+- [Organize a downloads folder](organizar-descargas-python.html)
+- [Bulk rename files](renombrar-archivos-python.html)
+- [Clean and merge CSV files](limpiar-csv-python.html)
+- [Find duplicate files](detectar-duplicados-python.html)
+- [Create rotating ZIP backups](copias-seguridad-python.html)

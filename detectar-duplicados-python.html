@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Encuentra archivos duplicados en Python comparando su contenido con SHA-256. Empieza con un informe y revisa antes de mover archivos.">
+  <link rel="canonical" href="https://julianviejo28-lab.github.io/python-automation-pro-kit/detectar-duplicados-python.html">
+  <meta property="og:title" content="Detectar archivos duplicados con Python">
+  <meta property="og:description" content="Busca archivos con el mismo contenido usando hashes SHA-256.">
+  <title>Detectar archivos duplicados con Python | Guía gratuita</title>
+  <style>
+    :root{color-scheme:dark;--bg:#101827;--panel:#172338;--ink:#eff5ff;--muted:#b4c1d4;--green:#73e0b1;--line:#30415b}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 system-ui,sans-serif}.wrap{width:min(800px,calc(100% - 32px));margin:auto}header,footer{padding:20px 0;border-bottom:1px solid var(--line)}footer{border-top:1px solid var(--line);border-bottom:0;margin-top:40px;color:var(--muted)}a{color:var(--green)}h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1.1}.lead,.muted{color:var(--muted)}main{padding:34px 0}pre{overflow:auto;background:#0b1220;border:1px solid var(--line);border-radius:10px;padding:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;margin:26px 0}.button{display:inline-block;background:var(--green);color:#092218;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:750}.eyebrow{text-transform:uppercase;letter-spacing:.1em;color:var(--green);font-size:.8rem}
+  </style>
+</head>
+<body>
+  <header><div class="wrap"><a href="./">Python Automation Pro Kit</a> · <a href="./#guias">Más guías</a></div></header>
+  <main class="wrap">
+    <article>
+      <p class="eyebrow">Guía gratuita · Python 3</p>
+      <h1>Cómo detectar archivos duplicados con Python</h1>
+      <p class="lead">El nombre no basta para saber si dos archivos son iguales. El detector del kit compara hashes SHA-256 para agrupar archivos con el mismo contenido.</p>
+      <h2>Empieza con el informe</h2>
+      <p>Ejecuta el comando sobre una carpeta para identificar grupos duplicados. Sin una carpeta de destino, el script solo informa los grupos:</p>
+      <pre><code>python find_duplicates.py ~/Pictures</code></pre>
+      <p>Revisa las rutas antes de decidir qué conservar. Si quieres que el script mueva los duplicados, especifica una carpeta destino fuera de la carpeta analizada:</p>
+      <pre><code>python find_duplicates.py ~/Pictures --move-to ~/duplicates</code></pre>
+      <p class="muted">Haz una copia de seguridad y comprueba el destino antes de mover archivos. Mantén siempre al menos una copia del contenido que quieras conservar.</p>
+      <section class="card">
+        <h2>Más tareas en un solo kit</h2>
+        <p>Organiza carpetas, renombra archivos, limpia CSV y crea copias ZIP con herramientas sencillas de Python 3. Incluye pruebas y manual bilingüe; $9 USD.</p>
+        <a class="button" href="https://t.me/Julian_sniper_bot?start=seo">Ver el kit en Telegram</a>
+      </section>
+      <section lang="en">
+        <h2>English: find duplicate files</h2>
+        <p>Start with a report: <code>python find_duplicates.py ~/Pictures</code>. Review the groups first. To move duplicates, choose a destination outside the scanned folder and make a backup before running with <code>--move-to</code>.</p>
+        <p><a href="https://t.me/Julian_sniper_bot?start=seo">See the $9 Python Automation Pro Kit</a>.</p>
+      </section>
+    </article>
+  </main>
+  <footer><div class="wrap"><a href="./">Inicio</a> · <a href="./#guias">Guías</a></div></footer>
+</body>
+</html>
