@@ -1,6 +1,6 @@
 # Python Automation Pro Kit
 
-Automatiza tareas repetitivas con seis scripts de Python 3: organizador, renombrador por lotes, limpiador CSV, detector de duplicados, copias ZIP rotativas y avisos informativos de precio cripto. Prueba primero el [auditor CSV gratuito](demo/README.md) o [descarga el paquete ZIP gratis](https://raw.githubusercontent.com/julianviejo28-lab/python-automation-pro-kit/main/demo/csv_audit_preview.zip).
+Automatiza tareas repetitivas con seis scripts de Python 3: organizador, renombrador por lotes, limpiador CSV, detector de duplicados, copias ZIP rotativas y avisos informativos de precio cripto. Prueba primero el [auditor CSV gratuito](demo/README.md), [abre el cuaderno gratuito en Kaggle](https://www.kaggle.com/code/salmaviejo/csv-audit-with-python-missing-cells-and-duplicates) o [descarga el paquete ZIP gratis](https://raw.githubusercontent.com/julianviejo28-lab/python-automation-pro-kit/main/demo/csv_audit_preview.zip).
 
 - Python 3.9+, Windows, macOS y Linux.
 - Sin dependencias externas.
@@ -20,7 +20,7 @@ La página de producto está en [index.html](index.html).
 
 # Python Automation Pro Kit (English)
 
-Six Python 3 utilities for file organization, bulk renaming, CSV cleanup, duplicate detection, rotating ZIP backups, and informational crypto price alerts. Try the free [read-only CSV audit preview](demo/README.md) or [download its ZIP bundle](https://raw.githubusercontent.com/julianviejo28-lab/python-automation-pro-kit/main/demo/csv_audit_preview.zip) first.
+Six Python 3 utilities for file organization, bulk renaming, CSV cleanup, duplicate detection, rotating ZIP backups, and informational crypto price alerts. Try the free [read-only CSV audit preview](demo/README.md), [open the free Kaggle notebook](https://www.kaggle.com/code/salmaviejo/csv-audit-with-python-missing-cells-and-duplicates), or [download its ZIP bundle](https://raw.githubusercontent.com/julianviejo28-lab/python-automation-pro-kit/main/demo/csv_audit_preview.zip) first.
 
 - Python 3.9+, Windows, macOS, and Linux.
 - No external dependencies.
