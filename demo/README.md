@@ -9,7 +9,7 @@ python csv_audit_preview.py contacts.csv --json
 
 Requires Python 3.9+. The included tests run with `python -m unittest -v`.
 
-This small preview is MIT licensed. The full [Python Automation Pro Kit](https://julianviejo28-lab.github.io/python-automation-pro-kit/) includes six additional ready-to-use tools and a bilingual guide for **$9 USD**, with checkout and delivery through Telegram.
+This small preview is MIT licensed. The full [Python Automation Pro Kit](https://julianviejo28-lab.github.io/python-automation-pro-kit/) includes six additional ready-to-use tools and a bilingual guide for **700 Telegram Stars (XTR)**; the cost of buying Stars varies by country, taxes, and store, with checkout and delivery through Telegram.
 
 ---
 
@@ -22,4 +22,4 @@ python csv_audit_preview.py contactos.csv --json
 
 Requiere Python 3.9+. Ejecuta las pruebas con `python -m unittest -v`.
 
-Esta pequeña muestra tiene licencia MIT. El [Python Automation Pro Kit completo](https://julianviejo28-lab.github.io/python-automation-pro-kit/) incluye seis herramientas listas para usar y una guía bilingüe por **$9 USD**, con pago y entrega por Telegram.
+Esta pequeña muestra tiene licencia MIT. El [Python Automation Pro Kit completo](https://julianviejo28-lab.github.io/python-automation-pro-kit/) incluye seis herramientas listas para usar y una guía bilingüe por **700 Telegram Stars (XTR)**; el coste de comprar Stars puede variar por país, impuestos y tienda, con pago y entrega por Telegram.

@@ -5,14 +5,14 @@ Automatiza tareas repetitivas con seis scripts de Python 3: organizador, renombr
 - Python 3.9+, Windows, macOS y Linux.
 - Sin dependencias externas.
 - Guía bilingüe y pruebas incluidas.
-- Precio: **$9 USD**. El bot enseña el total exacto y la red antes del pago.
-- Pago cripto y entrega automática del ZIP por Telegram tras confirmar la transferencia.
+- Precio: **700 Telegram Stars (XTR)**. El coste de comprar Stars varía por país, impuestos y tienda; la factura muestra el total antes de confirmar.
+- Pago y entrega automática del ZIP dentro de Telegram tras la confirmación de Telegram.
 
 ## Compra
 
-Abre [Julián | Automatización Python en Telegram](https://t.me/Julian_sniper_bot?start=readme) y pulsa **Iniciar**. El checkout admite USDT en TRON, BNB Smart Chain o Arbitrum, además de TRX, SOL y BTC.
+Abre [Julián | Automatización Python en Telegram](https://t.me/Julian_sniper_bot?start=readme) y pulsa **Iniciar**. Lee `/terms`, acepta los términos y revisa la factura de Telegram Stars. Para problemas de pago o entrega, usa `/paysupport`.
 
-Envía solo el monto y la red exactos que muestre el bot. Las transferencias cripto pueden ser irreversibles; nunca compartas claves privadas ni frases semilla. La alerta cripto del kit solo consulta precios públicos, no opera y no ofrece asesoría de inversión.
+El vendedor gestiona soporte y los reembolsos aplicables; el soporte de Telegram no puede resolver compras del vendedor. Las alertas cripto del kit solo consultan precios públicos, no operan y no ofrecen asesoría de inversión.
 
 La página de producto está en [index.html](index.html).
 
@@ -33,14 +33,14 @@ Six Python 3 utilities for file organization, bulk renaming, CSV cleanup, duplic
 - Python 3.9+, Windows, macOS, and Linux.
 - No external dependencies.
 - Bilingual guide and tests included.
-- **$9 USD**. The Telegram checkout displays the exact amount and network.
-- Crypto payment and automatic ZIP delivery after on-chain confirmation.
+- **700 Telegram Stars (XTR)**. The cost of acquiring Stars varies by country, taxes, and store; Telegram displays the total before confirmation.
+- Telegram payment and automatic ZIP delivery after Telegram confirms the payment.
 
 ## Get the kit
 
-Open [Julián | Python Automation on Telegram](https://t.me/Julian_sniper_bot?start=readme) and tap **Start**. The checkout currently supports USDT on TRON, BNB Smart Chain, or Arbitrum, plus TRX, SOL, and BTC.
+Open [Julián | Python Automation on Telegram](https://t.me/Julian_sniper_bot?start=readme) and tap **Start**. Read `/terms`, accept them, and review the Telegram Stars invoice. Use `/paysupport` for payment or delivery issues.
 
-Send only the exact amount on the network shown by the bot. Crypto transfers can be irreversible. Never share a private key or seed phrase. The crypto alert only reads public prices; it does not trade or provide investment advice.
+The seller handles support and applicable refunds; Telegram support cannot resolve purchases from this seller. The crypto alert only reads public prices; it does not trade or provide investment advice.
 
 ## Free guides
 
