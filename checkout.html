@@ -38,13 +38,20 @@
   <header><div class="wrap"><a href="./index.html">Julián · Automatización Python</a></div></header>
   <main class="wrap">
     <p class="muted">PAGO WEB · USDT EN RED TRON (TRC20)</p>
-    <h1>CSV Quality Gate Plus</h1>
-    <p class="muted">Obtén la herramienta, ejemplos, licencia MIT y cuatro pruebas. El sistema verifica la transferencia confirmada y habilita la descarga en esta misma página.</p>
+    <h1 id="product-title">CSV Quality Gate Plus</h1>
+    <p class="muted" id="product-description">Obtén la herramienta, ejemplos, licencia MIT y cuatro pruebas. El sistema verifica la transferencia confirmada y habilita la descarga en esta misma página.</p>
 
     <section class="card" id="start-card">
-      <h2>Precio base: 5 USD</h2>
-      <p>Para identificar automáticamente el pago, el importe exacto incluye un sufijo entre 0.101 y 0.199 USDT. El total aparece antes de enviar fondos.</p>
+      <h2 id="price-title">Precio base: 5 USD</h2>
+      <p id="price-note">El importe exacto incluye un sufijo único entre 0.101 y 0.199 USDT para identificar el pago; el total aparece antes de enviar fondos.</p>
+      <div id="custom-form" hidden>
+        <label for="custom-details"><strong>Describe el script local que necesitas</strong></label>
+        <textarea id="custom-details" maxlength="1000" minlength="20" rows="5" style="display:block;width:100%;margin:10px 0;padding:12px;border-radius:10px;background:#0b1320;color:var(--ink);border:1px solid var(--line);font:inherit" placeholder="Ejemplo: organiza archivos de una carpeta por extensión, ofrece vista previa y permite elegir la carpeta desde la terminal."></textarea>
+        <p class="muted">Solo utilidades locales de Python estándar. La descripción se procesa con Google Gemma 4; en el servicio gratuito, Google puede usar entradas y respuestas para mejorar sus productos y revisores humanos podrían procesarlas. No incluyas datos personales, claves ni contraseñas. La descripción no se guarda en el registro del pedido; el script preparado queda guardado localmente hasta completar la entrega. El script se prepara antes del pedido; si no se puede preparar, no se cobra.</p>
+      </div>
       <p class="warning"><strong>Envía USDT solo por TRON / TRC20.</strong> Una transferencia por otra red no se puede acreditar automáticamente.</p>
+      <label><input id="terms-check" type="checkbox"> Confirmo que revisaré el importe, usaré la red TRC20 y revisaré cualquier script antes de ejecutarlo.</label>
+      <p class="muted">La herramienta valida la sintaxis del script; no ejecuta código generado ni garantiza que coincida con todos los casos de uso.</p>
       <button class="button" id="start-button" type="button" disabled>Conectando checkout…</button>
       <p id="availability" class="muted" role="status">Comprobando disponibilidad del checkout…</p>
     </section>
@@ -76,10 +83,29 @@
   const availability = document.getElementById('availability');
   const orderCard = document.getElementById('order-card');
   const message = document.getElementById('message');
-  const product = new URLSearchParams(location.search).get('product') || 'csv_gate';
+  const catalog = {
+    csv_gate: {name:'CSV Quality Gate Plus', price:'5', description:'ZIP con la herramienta de validación CSV, ejemplos, licencia MIT y cuatro pruebas.'},
+    kit: {name:'Python Automation Pro Kit', price:'9', description:'ZIP con seis herramientas Python, manual bilingüe y pruebas.'},
+    custom: {name:'Script Python a medida', price:'15', description:'Un script local de Python estándar preparado para tu descripción y entregado en un ZIP después de confirmar el pago.', custom:true}
+  };
+  const requestedProduct = new URLSearchParams(location.search).get('product') || 'csv_gate';
+  const product = Object.prototype.hasOwnProperty.call(catalog, requestedProduct) ? requestedProduct : 'csv_gate';
+  const item = catalog[product];
   const tokenKey = `web-checkout-token:${product}`;
   let apiBase = '';
   let currentOrder = null;
+
+  document.title = `Checkout — ${item.name}`;
+  document.getElementById('product-title').textContent = item.name;
+  document.getElementById('product-description').textContent = item.description;
+  document.getElementById('price-title').textContent = `Precio base: ${item.price} USD`;
+  document.getElementById('price-note').textContent = `El importe exacto incluye un sufijo único entre 0.101 y 0.199 USDT para identificar el pago; el total aparece antes de enviar fondos (aprox. ${item.price}.101–${item.price}.199 USDT).`;
+  if (item.custom) {
+    document.getElementById('custom-form').hidden = false;
+    start.textContent = 'Preparar script y ver importe';
+  } else {
+    start.textContent = 'Crear pedido y ver importe';
+  }
 
   async function loadApi() {
     try {
@@ -89,7 +115,7 @@
       if (typeof cfg.api_base === 'string' && /^https:\/\/[a-z0-9-]+\.trycloudflare\.com$/i.test(cfg.api_base)) {
         apiBase = cfg.api_base;
         start.disabled = false;
-        start.textContent = 'Crear pedido y ver importe';
+        start.textContent = item.custom ? 'Preparar script y ver importe' : 'Crear pedido y ver importe';
         availability.textContent = 'Checkout temporal disponible. Debes mantener esta computadora conectada hasta que termine el pago.';
         restoreOrder();
         return;
@@ -123,12 +149,21 @@
 
   async function createOrder() {
     if (!apiBase || start.disabled) return;
+    const details = item.custom ? document.getElementById('custom-details').value.trim() : '';
+    if (!document.getElementById('terms-check').checked) {
+      availability.textContent = 'Confirma las condiciones antes de crear el pedido.';
+      return;
+    }
+    if (item.custom && (details.length < 20 || details.length > 1000)) {
+      availability.textContent = 'Describe la tarea con entre 20 y 1000 caracteres.';
+      return;
+    }
     start.disabled = true;
-    availability.textContent = 'Creando pedido seguro…';
+    availability.textContent = item.custom ? 'Preparando el script; todavía no se creó ni cobró el pedido…' : 'Creando pedido seguro…';
     try {
       const r = await fetch(`${apiBase}/api/orders`, {
         method:'POST', headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({product})
+        body:JSON.stringify({product, details})
       });
       const data = await r.json();
       if (!r.ok) throw new Error(data.error || 'No se pudo crear el pedido.');

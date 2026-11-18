@@ -7,8 +7,13 @@ Automatiza tareas repetitivas con seis scripts de Python 3: organizador, renombr
 - Guía bilingüe y pruebas incluidas.
 - Precio: **700 Telegram Stars (XTR)**. El coste de comprar Stars varía por país, impuestos y tienda; la factura muestra el total antes de confirmar.
 - Pago y entrega automática del ZIP dentro de Telegram tras la confirmación de Telegram.
+- Checkout web alternativo: [paga el Kit con USDT por TRON (TRC20)](checkout.html?product=kit). El total exacto aparece antes de enviar y la descarga se habilita después de confirmar la transferencia.
 
-También está disponible [CSV Quality Gate Plus](csv-quality-gate.html), para revisar columnas requeridas, celdas vacías y claves duplicadas antes de importar un CSV. Cuesta 400 Stars y se entrega automáticamente tras la confirmación del pago.
+También está disponible [CSV Quality Gate Plus](csv-quality-gate.html), para revisar columnas requeridas, celdas vacías y claves duplicadas antes de importar un CSV. Cuesta 400 Stars en Telegram o tiene checkout web USDT.
+
+Para tareas locales concretas, puedes [preparar un script Python a medida](checkout.html?product=custom). El script se genera y revisa sintácticamente antes de crear el pedido; se entrega tras la transferencia confirmada. La descripción se procesa con Google Gemma 4 en el nivel gratuito; no envíes datos personales, claves ni información confidencial.
+
+El checkout web es un servicio temporal alojado desde la computadora del vendedor. Si no está disponible, usa el pago Stars en Telegram.
 
 ## Compra
 
@@ -37,12 +42,17 @@ Six Python 3 utilities for file organization, bulk renaming, CSV cleanup, duplic
 - Bilingual guide and tests included.
 - **700 Telegram Stars (XTR)**. The cost of acquiring Stars varies by country, taxes, and store; Telegram displays the total before confirmation.
 - Telegram payment and automatic ZIP delivery after Telegram confirms the payment.
+- Alternative web checkout: [pay for the Kit with USDT on TRON (TRC20)](checkout.html?product=kit). The exact amount is shown before payment; the download unlocks after the chain confirms the transfer.
 
 ## Get the kit
 
 Open [Julián | Python Automation on Telegram](https://t.me/Julian_sniper_bot?start=readme) and tap **Start**. Read `/terms`, accept them, and review the Telegram Stars invoice. Use `/paysupport` for payment or delivery issues.
 
 The seller handles support and applicable refunds; Telegram support cannot resolve purchases from this seller. The crypto alert only reads public prices; it does not trade or provide investment advice.
+
+Also available: [CSV Quality Gate Plus](csv-quality-gate.html), with Telegram Stars or web USDT checkout, and [preparing a custom local Python script](checkout.html?product=custom). Custom scripts are generated and syntax-checked before an order is created, then delivered after payment confirmation. The description is processed by Google Gemma 4 on its free tier; do not submit personal, confidential, or secret data.
+
+The web checkout is a temporary service hosted from the seller's computer. If it is unavailable, use the Telegram Stars checkout.
 
 ## Free guides
 
