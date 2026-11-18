@@ -1,6 +1,6 @@
 # Python Automation Pro Kit
 
-Automatiza tareas de archivos con seis scripts de Python 3: organizador, renombrador por lotes, limpiador CSV, detector de duplicados, copias ZIP rotativas y avisos informativos de precio cripto.
+Automatiza tareas repetitivas con seis scripts de Python 3: organizador, renombrador por lotes, limpiador CSV, detector de duplicados, copias ZIP rotativas y avisos informativos de precio cripto. Prueba primero el [auditor CSV gratuito](demo/README.md).
 
 - Python 3.9+, Windows, macOS y Linux.
 - Sin dependencias externas.
@@ -15,3 +15,21 @@ Abre [Julián | Automatización Python en Telegram](https://t.me/Julian_sniper_b
 Envía solo el monto y la red exactos que muestre el bot. Las transferencias cripto pueden ser irreversibles; nunca compartas claves privadas ni frases semilla. La alerta cripto del kit solo consulta precios públicos, no opera y no ofrece asesoría de inversión.
 
 La página de producto está en [index.html](index.html).
+
+---
+
+# Python Automation Pro Kit (English)
+
+Six Python 3 utilities for file organization, bulk renaming, CSV cleanup, duplicate detection, rotating ZIP backups, and informational crypto price alerts. A free [read-only CSV audit preview](demo/README.md) is available to try first.
+
+- Python 3.9+, Windows, macOS, and Linux.
+- No external dependencies.
+- Bilingual guide and tests included.
+- **$9 USD**. The Telegram checkout displays the exact amount and network.
+- Crypto payment and automatic ZIP delivery after on-chain confirmation.
+
+## Get the kit
+
+Open [Julián | Python Automation on Telegram](https://t.me/Julian_sniper_bot) and tap **Start**. The checkout currently supports USDT on TRON, BNB Smart Chain, or Arbitrum, plus TRX, SOL, and BTC.
+
+Send only the exact amount on the network shown by the bot. Crypto transfers can be irreversible. Never share a private key or seed phrase. The crypto alert only reads public prices; it does not trade or provide investment advice.
