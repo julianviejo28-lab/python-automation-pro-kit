@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Compra herramientas Python y paga con las redes cripto disponibles. La descarga se activa tras confirmar el pago en cadena.">
+  <meta name="description" content="Compra herramientas Python con USDT. La descarga se activa cuando Binance acredita el depósito exacto.">
   <meta name="theme-color" content="#101827">
   <meta property="og:type" content="product">
   <meta property="og:title" content="Checkout — CSV Quality Gate Plus">
-  <meta property="og:description" content="Elige entre las redes cripto disponibles. Verificación automática y descarga digital tras confirmar el pago.">
+  <meta property="og:description" content="Elige una red habilitada para depósitos de USDT en Binance. Entrega automática tras la acreditación exacta.">
   <link rel="canonical" href="https://julianviejo28-lab.github.io/python-automation-pro-kit/checkout.html">
   <title>Checkout — CSV Quality Gate Plus</title>
   <style>
@@ -38,19 +38,19 @@
 <body>
   <header><div class="wrap"><a href="./index.html">Julián · Automatización Python</a></div></header>
   <main class="wrap">
-    <p class="muted">PAGO WEB · REDES CRIPTO</p>
+    <p class="muted">PAGO WEB · USDT</p>
     <h1 id="product-title">CSV Quality Gate Plus</h1>
-    <p class="muted" id="product-description">Obtén la herramienta, ejemplos, licencia MIT y cuatro pruebas. El sistema verifica la transferencia confirmada y habilita la descarga en esta misma página.</p>
+    <p class="muted" id="product-description">Obtén la herramienta, ejemplos, licencia MIT y cuatro pruebas. Binance verifica el depósito acreditado antes de habilitar la descarga en esta página.</p>
 
     <section class="card" id="start-card">
       <h2 id="price-title">Precio base: 5 USD</h2>
-      <p id="price-note">El importe exacto aparece antes de pagar e incluye una pequeña fracción única para reconocer la transferencia automáticamente.</p>
+      <p id="price-note">Total en USDT: precio base más una fracción única de $0.101 a $0.2999 para reconocer la transferencia. Verás el importe exacto antes de enviar.</p>
       <div id="custom-form" hidden>
         <label for="custom-details"><strong>Describe el script local que necesitas</strong></label>
         <textarea id="custom-details" maxlength="1000" minlength="20" rows="5" style="display:block;width:100%;margin:10px 0;padding:12px;border-radius:10px;background:#0b1320;color:var(--ink);border:1px solid var(--line);font:inherit" placeholder="Ejemplo: organiza archivos de una carpeta por extensión, ofrece vista previa y permite elegir la carpeta desde la terminal."></textarea>
         <p class="muted">Solo utilidades locales de Python estándar. La descripción se procesa con Google Gemma 4; en el servicio gratuito, Google puede usar entradas y respuestas para mejorar sus productos y revisores humanos podrían procesarlas. No incluyas datos personales, claves ni contraseñas. La descripción no se guarda en el registro del pedido; el script preparado queda guardado localmente hasta completar la entrega. El script se prepara antes del pedido; si no se puede preparar, no se cobra.</p>
       </div>
-      <label for="payment-method"><strong>Elige cómo pagar</strong></label>
+      <label for="payment-method"><strong>Elige la red para pagar USDT</strong></label>
       <select id="payment-method" disabled><option value="">Cargando métodos disponibles…</option></select>
       <p class="warning" id="network-warning">Selecciona una opción y usa exactamente esa red y activo.</p>
       <label><input id="terms-check" type="checkbox"> Confirmo que revisaré el importe, la red y la dirección antes de enviar fondos.</label>
@@ -64,22 +64,24 @@
       <dl>
         <dt>Importe exacto</dt><dd><span id="amount"></span> <span id="currency">USDT</span></dd>
         <dt>Activo y red</dt><dd id="network"></dd>
+        <dt id="address-tag-label" hidden>Etiqueta / memo</dt><dd id="address-tag" hidden></dd>
         <dt>Vence</dt><dd id="expires"></dd>
       </dl>
-      <p>Envía el importe exacto a esta dirección. La descarga se activa cuando la red confirma el pago.</p>
+      <p>Envía el importe exacto como USDT a esta dirección. La descarga se activa cuando Binance acredita el depósito.</p>
       <code class="address" id="address"></code>
       <div class="row">
         <button class="button secondary" id="copy-address" type="button">Copiar dirección</button>
         <button class="button secondary" id="copy-amount" type="button">Copiar importe</button>
         <button class="button" id="check-button" type="button">Comprobar pago</button>
       </div>
-      <p id="message" role="status" aria-live="polite">Esperando transferencia confirmada…</p>
+      <p id="message" role="status" aria-live="polite">Esperando que Binance acredite el depósito…</p>
+      <button class="button secondary" id="new-order-button" type="button" hidden>Crear un nuevo pedido</button>
       <button class="button" id="download-button" type="button" hidden>Descargar ZIP</button>
     </section>
 
     <p class="muted">También puedes pagar con Telegram Stars desde la <a href="./csv-quality-gate.html">página del producto</a>. Si necesitas ayuda, <a href="https://t.me/Julian_sniper_bot" target="_blank" rel="noopener noreferrer">escríbenos por Telegram</a>.</p>
   </main>
-  <footer><div class="wrap">No envíes más de una transferencia por pedido. El total, la red y la dirección se muestran antes de pagar.</div></footer>
+  <footer><div class="wrap">No envíes más de una transferencia por pedido. Revisa el total, la red y la dirección antes de pagar; la entrega espera la acreditación de Binance.</div></footer>
 <script>
 (() => {
   const start = document.getElementById('start-button');
@@ -87,6 +89,7 @@
   const availability = document.getElementById('availability');
   const orderCard = document.getElementById('order-card');
   const message = document.getElementById('message');
+  const newOrder = document.getElementById('new-order-button');
   const catalog = {
     csv_gate: {name:'CSV Quality Gate Plus', price:'5', description:'ZIP con la herramienta de validación CSV, ejemplos, licencia MIT y cuatro pruebas.', downloadName:'csv-quality-gate-plus-v1-0-2.zip'},
     kit: {name:'Python Automation Pro Kit', price:'9', description:'ZIP con seis herramientas Python, manual bilingüe y pruebas.', downloadName:'python_automation_pro_kit.zip'},
@@ -103,7 +106,7 @@
   document.getElementById('product-title').textContent = item.name;
   document.getElementById('product-description').textContent = item.description;
   document.getElementById('price-title').textContent = `Precio base: ${item.price} USD`;
-  document.getElementById('price-note').textContent = 'El importe exacto aparece antes de pagar e incluye una pequeña fracción única para reconocer la transferencia automáticamente.';
+  document.getElementById('price-note').textContent = 'Total en USDT: precio base más una fracción única de $0.101 a $0.2999 para reconocer la transferencia. Verás el importe exacto antes de enviar.';
   if (item.custom) {
     document.getElementById('custom-form').hidden = false;
     start.textContent = 'Preparar script y ver importe';
@@ -124,7 +127,9 @@
         if (!Array.isArray(methodsData.methods) || methodsData.methods.length === 0) throw new Error('no payment methods');
         paymentMethod.replaceChildren(...methodsData.methods.map(method => new Option(method.label, method.key)));
         paymentMethod.disabled = false;
-        if (methodsData.methods.some(method => method.key === 'usdt_trc20')) paymentMethod.value = 'usdt_trc20';
+        if (methodsData.methods.some(method => method.network === 'TRX')) {
+          paymentMethod.value = methodsData.methods.find(method => method.network === 'TRX').key;
+        }
         updateNetworkWarning(methodsData.methods);
         start.disabled = false;
         start.textContent = item.custom ? 'Preparar script y ver importe' : 'Crear pedido y ver importe';
@@ -164,9 +169,14 @@
     document.getElementById('network').textContent = order.network || 'TRON (TRC20)';
     if (order.warning) document.getElementById('network-warning').textContent = order.warning;
     document.getElementById('address').textContent = order.address;
+    const hasTag = typeof order.address_tag === 'string' && order.address_tag.length > 0;
+    document.getElementById('address-tag-label').hidden = !hasTag;
+    document.getElementById('address-tag').hidden = !hasTag;
+    document.getElementById('address-tag').textContent = hasTag ? order.address_tag : '';
     document.getElementById('expires').textContent = new Date(order.expires_at * 1000).toLocaleString();
     paymentMethod.disabled = true;
     orderCard.hidden = false;
+    newOrder.hidden = true;
     start.disabled = true;
   }
 
@@ -211,11 +221,13 @@
       const data = await r.json();
       if (data.download_available) {
         message.textContent = 'Pago confirmado. Tu ZIP está listo.';
+        newOrder.hidden = true;
         document.getElementById('download-button').hidden = false;
       } else if (data.status === 'expired') {
         message.textContent = 'El pedido venció. No envíes fondos a esta dirección.';
+        newOrder.hidden = false;
       } else {
-        message.textContent = 'Esperando transferencia confirmada… La comprobación se repite automáticamente.';
+        message.textContent = 'Esperando acreditación de Binance… La comprobación se repite automáticamente.';
       }
     } catch (err) {
       message.textContent = 'No pude consultar el estado ahora. Vuelve a intentar en unos segundos.';
@@ -246,6 +258,17 @@
   }
 
   start.addEventListener('click', createOrder);
+  newOrder.addEventListener('click', () => {
+    localStorage.removeItem(tokenKey);
+    currentOrder = null;
+    orderCard.hidden = true;
+    paymentMethod.disabled = false;
+    document.getElementById('terms-check').checked = false;
+    start.disabled = false;
+    start.textContent = item.custom ? 'Preparar script y ver importe' : 'Crear pedido y ver importe';
+    availability.textContent = 'La orden anterior venció. Revisa de nuevo la red y las condiciones antes de crear otra.';
+    document.getElementById('start-card').scrollIntoView({behavior:'smooth', block:'start'});
+  });
   document.getElementById('check-button').addEventListener('click', checkStatus);
   document.getElementById('download-button').addEventListener('click', download);
   document.getElementById('copy-address').addEventListener('click', () => currentOrder && copyText(currentOrder.address, 'Dirección'));
