@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://julianviejo28-lab.github.io/python-automation-pro-kit/sitemap.xml
