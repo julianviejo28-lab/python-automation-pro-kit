@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Seis scripts de Python 3 para organizar archivos, limpiar CSV, hacer copias y más. Kit probado con entrega automática por Telegram.">
+  <meta name="theme-color" content="#101827">
+  <title>Python Automation Pro Kit — automatización práctica en Python</title>
+  <style>
+    :root { color-scheme: dark; --bg:#101827; --panel:#172338; --ink:#eff5ff; --muted:#b4c1d4; --green:#73e0b1; --line:#30415b; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:radial-gradient(ellipse at 80% 0%,#233957 0,transparent 42%),var(--bg); color:var(--ink); font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    a { color:var(--green); }
+    .wrap { width:min(1060px,calc(100% - 32px)); margin:auto; }
+    header { padding:22px 0; border-bottom:1px solid #ffffff18; }
+    header .wrap { display:flex; justify-content:space-between; align-items:center; gap:16px; }
+    .brand { color:var(--ink); text-decoration:none; font-weight:750; letter-spacing:.02em; }
+    nav a { margin-left:16px; text-decoration:none; font-size:.92rem; }
+    .hero { padding:80px 0 66px; display:grid; grid-template-columns:1.25fr .75fr; gap:42px; align-items:center; }
+    .eyebrow { color:var(--green); font-weight:700; text-transform:uppercase; letter-spacing:.12em; font-size:.78rem; }
+    h1 { margin:.35em 0 .25em; font-size:clamp(2.25rem,6vw,4.4rem); line-height:1.07; letter-spacing:-.045em; }
+    .lead { color:var(--muted); font-size:1.15rem; max-width:650px; }
+    .card { background:linear-gradient(150deg,#1c2c44,#152238); border:1px solid var(--line); border-radius:20px; padding:28px; box-shadow:0 22px 70px #0004; }
+    .price { font-size:3rem; font-weight:800; line-height:1.15; }
+    .price small { color:var(--muted); font-size:1rem; font-weight:500; }
+    .button { display:inline-flex; justify-content:center; align-items:center; margin-top:16px; padding:13px 20px; border-radius:12px; color:#092218; background:var(--green); font-weight:800; text-decoration:none; }
+    .button:hover { filter:brightness(1.08); }
+    .fine { color:var(--muted); font-size:.88rem; }
+    section { padding:34px 0; }
+    h2 { font-size:clamp(1.65rem,3vw,2.35rem); line-height:1.2; letter-spacing:-.025em; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .item { background:var(--panel); border:1px solid var(--line); border-radius:15px; padding:20px; }
+    .item h3 { margin:0 0 6px; font-size:1.05rem; }
+    .item p { margin:0; color:var(--muted); font-size:.94rem; }
+    .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; counter-reset:steps; }
+    .step { border-top:2px solid var(--green); padding:14px 8px 0 0; color:var(--muted); }
+    .step strong { display:block; color:var(--ink); margin-bottom:5px; }
+    .notice { border-left:3px solid #ffc96b; padding:12px 16px; color:var(--muted); background:#ffc96b12; border-radius:0 10px 10px 0; }
+    .english { border-top:1px solid var(--line); margin-top:36px; padding-top:32px; }
+    footer { margin-top:36px; padding:24px 0 36px; border-top:1px solid var(--line); color:var(--muted); font-size:.9rem; }
+    @media (max-width:760px) { .hero { grid-template-columns:1fr; padding:54px 0 40px; gap:24px; } .grid { grid-template-columns:1fr 1fr; } .steps { grid-template-columns:1fr 1fr; } nav a { margin-left:8px; } }
+    @media (max-width:480px) { .grid,.steps { grid-template-columns:1fr; } header .wrap { align-items:flex-start; flex-direction:column; } nav a:first-child { margin-left:0; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="#inicio">Julián · Automatización Python</a>
+      <nav aria-label="Language navigation"><a href="#es">Español</a><a href="#en">English</a></nav>
+    </div>
+  </header>
+  <main class="wrap" id="inicio">
+    <section class="hero" id="es">
+      <div>
+        <div class="eyebrow">Python 3 · Windows · macOS · Linux</div>
+        <h1>Menos tareas repetidas.<br>Más tiempo para tu trabajo.</h1>
+        <p class="lead">Seis scripts prácticos para ordenar archivos, renombrar en lote, limpiar CSV, encontrar duplicados, crear copias ZIP y recibir avisos informativos de precio cripto.</p>
+        <p>El kit incluye manual bilingüe y pruebas automáticas. Funciona con Python 3.9 o superior y no requiere dependencias externas.</p>
+      </div>
+      <aside class="card" aria-label="Purchase information">
+        <div class="eyebrow">Descarga digital</div>
+        <p class="price">$9 <small>USD</small></p>
+        <p class="fine">El bot muestra el total exacto y la red antes de confirmar. Pago en cripto y entrega automática del ZIP en Telegram tras confirmarse el pago.</p>
+        <a class="button" href="https://t.me/Julian_sniper_bot" target="_blank" rel="noopener noreferrer">Comprar por Telegram</a>
+        <p class="fine">Abre el bot y pulsa <strong>Iniciar</strong> para ver el producto.</p>
+      </aside>
+    </section>
+
+    <section>
+      <h2>Seis herramientas para tareas cotidianas</h2>
+      <div class="grid">
+        <article class="item"><h3>Organizar carpetas</h3><p>Ordena archivos por tipo y evita sobrescribir archivos existentes. Incluye vista previa.</p></article>
+        <article class="item"><h3>Renombrar en lote</h3><p>Aplica prefijos, numeración, reemplazos y cambios a minúsculas.</p></article>
+        <article class="item"><h3>Limpiar CSV</h3><p>Combina archivos, detecta separadores comunes y quita filas duplicadas.</p></article>
+        <article class="item"><h3>Encontrar duplicados</h3><p>Compara el contenido con SHA-256 y puede mover duplicados a una carpeta aparte.</p></article>
+        <article class="item"><h3>Copias ZIP rotativas</h3><p>Guarda copias con fecha y conserva el número de respaldos que elijas.</p></article>
+        <article class="item"><h3>Avisos de precio cripto</h3><p>Consulta precios públicos y envía alertas por Telegram. No opera ni recomienda activos.</p></article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Compra y recibe el kit</h2>
+      <div class="steps">
+        <div class="step"><strong>1. Abre el bot</strong>Pulsa «Comprar por Telegram» y luego «Iniciar».</div>
+        <div class="step"><strong>2. Elige el pago</strong>Selecciona una de las redes disponibles en el checkout.</div>
+        <div class="step"><strong>3. Envía el total exacto</strong>Usa el monto y la red que muestra el bot para tu pedido.</div>
+        <div class="step"><strong>4. Recibe el ZIP</strong>Tras confirmar el pago en la red, el bot entrega el archivo en Telegram.</div>
+      </div>
+      <p class="notice"><strong>Importante:</strong> una transferencia en una red o por un monto incorrectos puede no ser recuperable. Revisa los datos del pedido antes de enviar. Nunca compartas frases semilla ni claves privadas.</p>
+      <p class="fine">El precio cripto puede incluir un pequeño decimal de identificación; el bot enseña el total final antes de pagar. Por ahora el checkout acepta USDT (TRON, BNB Smart Chain o Arbitrum), TRX, SOL y BTC.</p>
+    </section>
+
+    <section>
+      <h2>Preguntas frecuentes</h2>
+      <div class="grid">
+        <article class="item"><h3>¿Qué recibo?</h3><p>Un ZIP con los seis scripts, instrucciones en español e inglés y las pruebas del kit.</p></article>
+        <article class="item"><h3>¿Necesito instalar paquetes?</h3><p>No. Requiere Python 3.9+; el kit usa la biblioteca estándar de Python.</p></article>
+        <article class="item"><h3>¿La alerta cripto compra o vende?</h3><p>No. Solo consulta precios públicos y envía avisos informativos; no es asesoría financiera.</p></article>
+      </div>
+    </section>
+
+    <section class="english" id="en" lang="en">
+      <div class="eyebrow">English</div>
+      <h2>Practical Python automation, ready to use</h2>
+      <p class="lead">Six tested scripts for organizing files, bulk renaming, cleaning CSVs, finding duplicates, creating rotating ZIP backups, and receiving informational crypto price alerts.</p>
+      <p>Includes a bilingual guide and automated tests. Runs on Windows, macOS, and Linux with Python 3.9+ and no extra packages.</p>
+      <p><a class="button" href="https://t.me/Julian_sniper_bot" target="_blank" rel="noopener noreferrer">Buy through Telegram · $9 USD</a></p>
+      <p class="fine">The bot shows the exact total and network before checkout. Crypto payment only at this time. After on-chain confirmation, the bot delivers the ZIP in Telegram. Never share a seed phrase or private key.</p>
+      <p class="fine">The crypto alert only reads public prices and sends notifications. It does not trade or provide investment advice.</p>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap">Julián · Automatización Python · <a href="https://t.me/Julian_sniper_bot">Soporte y compras por Telegram</a></div>
+  </footer>
+</body>
+</html>
