@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compra CSV Quality Gate Plus con USDT TRC20 y recibe el ZIP después de confirmar el pago en la blockchain.">
+  <meta name="theme-color" content="#101827">
+  <meta property="og:type" content="product">
+  <meta property="og:title" content="Checkout — CSV Quality Gate Plus">
+  <meta property="og:description" content="Pago USDT por TRON (TRC20), verificación automática y descarga digital tras confirmación.">
+  <link rel="canonical" href="https://julianviejo28-lab.github.io/python-automation-pro-kit/checkout.html">
+  <title>Checkout — CSV Quality Gate Plus</title>
+  <style>
+    :root { color-scheme:dark; --bg:#101827; --panel:#172338; --ink:#eff5ff; --muted:#b4c1d4; --green:#73e0b1; --line:#30415b; --warn:#ffd27d; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:radial-gradient(ellipse at 80% 0%,#233957 0,transparent 42%),var(--bg); color:var(--ink); font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    .wrap { width:min(760px,calc(100% - 32px)); margin:auto; }
+    header,footer { padding:20px 0; border-bottom:1px solid #ffffff18; }
+    footer { margin-top:36px; border-top:1px solid var(--line); border-bottom:0; color:var(--muted); }
+    a { color:var(--green); }
+    main { padding:46px 0; }
+    .card { background:linear-gradient(150deg,#1c2c44,#152238); border:1px solid var(--line); border-radius:18px; padding:24px; margin:20px 0; }
+    h1 { font-size:clamp(2rem,6vw,3rem); line-height:1.1; }
+    .muted { color:var(--muted); }
+    .button { display:inline-flex; border:0; border-radius:11px; padding:13px 19px; background:var(--green); color:#092218; font:inherit; font-weight:800; cursor:pointer; text-decoration:none; }
+    .button:disabled { opacity:.55; cursor:not-allowed; }
+    .secondary { background:#263850; color:var(--ink); }
+    .warning { color:var(--warn); }
+    .address { display:block; overflow-wrap:anywhere; padding:14px; border-radius:10px; background:#0b1320; border:1px solid var(--line); font:14px/1.5 ui-monospace,SFMono-Regular,monospace; }
+    .row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    [hidden] { display:none !important; }
+    #message { min-height:1.6em; }
+    dt { color:var(--muted); }
+    dd { margin:0 0 12px; font-weight:700; }
+  </style>
+</head>
+<body>
+  <header><div class="wrap"><a href="./index.html">Julián · Automatización Python</a></div></header>
+  <main class="wrap">
+    <p class="muted">PAGO WEB · USDT EN RED TRON (TRC20)</p>
+    <h1>CSV Quality Gate Plus</h1>
+    <p class="muted">Obtén la herramienta, ejemplos, licencia MIT y cuatro pruebas. El sistema verifica la transferencia confirmada y habilita la descarga en esta misma página.</p>
+
+    <section class="card" id="start-card">
+      <h2>Precio base: 5 USD</h2>
+      <p>Para identificar automáticamente el pago, el importe exacto incluye un sufijo entre 0.101 y 0.199 USDT. El total aparece antes de enviar fondos.</p>
+      <p class="warning"><strong>Envía USDT solo por TRON / TRC20.</strong> Una transferencia por otra red no se puede acreditar automáticamente.</p>
+      <button class="button" id="start-button" type="button" disabled>Conectando checkout…</button>
+      <p id="availability" class="muted" role="status">Comprobando disponibilidad del checkout…</p>
+    </section>
+
+    <section class="card" id="order-card" hidden>
+      <h2>Pedido <span id="order-id"></span></h2>
+      <dl>
+        <dt>Importe exacto</dt><dd><span id="amount"></span> USDT</dd>
+        <dt>Red</dt><dd>TRON (TRC20)</dd>
+        <dt>Vence</dt><dd id="expires"></dd>
+      </dl>
+      <p>Envía el importe exacto a esta dirección. La descarga se activa cuando la red confirma el pago.</p>
+      <code class="address" id="address"></code>
+      <div class="row">
+        <button class="button secondary" id="copy-address" type="button">Copiar dirección</button>
+        <button class="button secondary" id="copy-amount" type="button">Copiar importe</button>
+        <button class="button" id="check-button" type="button">Comprobar pago</button>
+      </div>
+      <p id="message" role="status" aria-live="polite">Esperando transferencia confirmada…</p>
+      <button class="button" id="download-button" type="button" hidden>Descargar ZIP</button>
+    </section>
+
+    <p class="muted">También puedes pagar con Telegram Stars desde la <a href="./csv-quality-gate.html">página del producto</a>. Si necesitas ayuda, <a href="https://t.me/Julian_sniper_bot" target="_blank" rel="noopener noreferrer">escríbenos por Telegram</a>.</p>
+  </main>
+  <footer><div class="wrap">No envíes más de una transferencia por pedido. El total, la red y la dirección se muestran antes de pagar.</div></footer>
+<script>
+(() => {
+  const start = document.getElementById('start-button');
+  const availability = document.getElementById('availability');
+  const orderCard = document.getElementById('order-card');
+  const message = document.getElementById('message');
+  const product = new URLSearchParams(location.search).get('product') || 'csv_gate';
+  const tokenKey = `web-checkout-token:${product}`;
+  let apiBase = '';
+  let currentOrder = null;
+
+  async function loadApi() {
+    try {
+      const r = await fetch(`./checkout-config.json?ts=${Date.now()}`, {cache:'no-store'});
+      if (!r.ok) throw new Error('config unavailable');
+      const cfg = await r.json();
+      if (typeof cfg.api_base === 'string' && /^https:\/\/[a-z0-9-]+\.trycloudflare\.com$/i.test(cfg.api_base)) {
+        apiBase = cfg.api_base;
+        start.disabled = false;
+        start.textContent = 'Crear pedido y ver importe';
+        availability.textContent = 'Checkout temporal disponible. Debes mantener esta computadora conectada hasta que termine el pago.';
+        restoreOrder();
+        return;
+      }
+    } catch (_) {}
+    start.disabled = true;
+    start.textContent = 'Checkout temporalmente no disponible';
+    availability.textContent = 'Prueba de nuevo más tarde o paga con Telegram Stars desde la página del producto.';
+  }
+
+  function restoreOrder() {
+    try {
+      const stored = localStorage.getItem(tokenKey);
+      if (!stored) return;
+      const parsed = JSON.parse(stored);
+      if (!parsed || typeof parsed.id !== 'string' || typeof parsed.token !== 'string') return;
+      currentOrder = parsed;
+      renderOrder(parsed);
+      checkStatus();
+    } catch (_) {}
+  }
+
+  function renderOrder(order) {
+    document.getElementById('order-id').textContent = order.id;
+    document.getElementById('amount').textContent = order.amount;
+    document.getElementById('address').textContent = order.address;
+    document.getElementById('expires').textContent = new Date(order.expires_at * 1000).toLocaleString();
+    orderCard.hidden = false;
+    start.disabled = true;
+  }
+
+  async function createOrder() {
+    if (!apiBase || start.disabled) return;
+    start.disabled = true;
+    availability.textContent = 'Creando pedido seguro…';
+    try {
+      const r = await fetch(`${apiBase}/api/orders`, {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({product})
+      });
+      const data = await r.json();
+      if (!r.ok) throw new Error(data.error || 'No se pudo crear el pedido.');
+      currentOrder = data;
+      localStorage.setItem(tokenKey, JSON.stringify(data));
+      renderOrder(data);
+      availability.textContent = '';
+      checkStatus();
+    } catch (err) {
+      availability.textContent = err.message || 'No se pudo conectar con el checkout.';
+      start.disabled = false;
+    }
+  }
+
+  async function checkStatus() {
+    if (!currentOrder || !apiBase) return;
+    try {
+      const r = await fetch(`${apiBase}/api/orders/${encodeURIComponent(currentOrder.id)}/status`, {
+        headers:{'Authorization':`Bearer ${currentOrder.token}`}, cache:'no-store'
+      });
+      if (!r.ok) throw new Error('No se pudo consultar el pedido.');
+      const data = await r.json();
+      if (data.download_available) {
+        message.textContent = 'Pago confirmado. Tu ZIP está listo.';
+        document.getElementById('download-button').hidden = false;
+      } else if (data.status === 'expired') {
+        message.textContent = 'El pedido venció. No envíes fondos a esta dirección.';
+      } else {
+        message.textContent = 'Esperando transferencia confirmada… La comprobación se repite automáticamente.';
+      }
+    } catch (err) {
+      message.textContent = 'No pude consultar el estado ahora. Vuelve a intentar en unos segundos.';
+    }
+  }
+
+  async function download() {
+    if (!currentOrder || !apiBase) return;
+    const button = document.getElementById('download-button');
+    button.disabled = true;
+    try {
+      const r = await fetch(`${apiBase}/api/orders/${encodeURIComponent(currentOrder.id)}/download`, {
+        headers:{'Authorization':`Bearer ${currentOrder.token}`}, cache:'no-store'
+      });
+      if (!r.ok) throw new Error('Descarga todavía no disponible.');
+      const blob = await r.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'csv-quality-gate-plus-v1-0-2.zip'; a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 30000);
+    } catch (err) {
+      message.textContent = err.message || 'No se pudo descargar el archivo.';
+    } finally { button.disabled = false; }
+  }
+
+  async function copyText(value, label) {
+    try { await navigator.clipboard.writeText(value); message.textContent = `${label} copiado.`; }
+    catch (_) { message.textContent = 'No pude copiarlo; selecciónalo y cópialo manualmente.'; }
+  }
+
+  start.addEventListener('click', createOrder);
+  document.getElementById('check-button').addEventListener('click', checkStatus);
+  document.getElementById('download-button').addEventListener('click', download);
+  document.getElementById('copy-address').addEventListener('click', () => currentOrder && copyText(currentOrder.address, 'Dirección'));
+  document.getElementById('copy-amount').addEventListener('click', () => currentOrder && copyText(`${currentOrder.amount} USDT`, 'Importe'));
+  loadApi();
+  setInterval(checkStatus, 15000);
+})();
+</script>
+</body>
+</html>
