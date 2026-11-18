@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Compra CSV Quality Gate Plus con USDT TRC20 y recibe el ZIP después de confirmar el pago en la blockchain.">
+  <meta name="description" content="Compra herramientas Python y paga con las redes cripto disponibles. La descarga se activa tras confirmar el pago en cadena.">
   <meta name="theme-color" content="#101827">
   <meta property="og:type" content="product">
   <meta property="og:title" content="Checkout — CSV Quality Gate Plus">
-  <meta property="og:description" content="Pago USDT por TRON (TRC20), verificación automática y descarga digital tras confirmación.">
+  <meta property="og:description" content="Elige entre las redes cripto disponibles. Verificación automática y descarga digital tras confirmar el pago.">
   <link rel="canonical" href="https://julianviejo28-lab.github.io/python-automation-pro-kit/checkout.html">
   <title>Checkout — CSV Quality Gate Plus</title>
   <style>
@@ -27,6 +27,7 @@
     .secondary { background:#263850; color:var(--ink); }
     .warning { color:var(--warn); }
     .address { display:block; overflow-wrap:anywhere; padding:14px; border-radius:10px; background:#0b1320; border:1px solid var(--line); font:14px/1.5 ui-monospace,SFMono-Regular,monospace; }
+    select { display:block; width:100%; margin:8px 0 14px; padding:12px; border-radius:10px; background:#0b1320; color:var(--ink); border:1px solid var(--line); font:inherit; }
     .row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
     [hidden] { display:none !important; }
     #message { min-height:1.6em; }
@@ -37,20 +38,22 @@
 <body>
   <header><div class="wrap"><a href="./index.html">Julián · Automatización Python</a></div></header>
   <main class="wrap">
-    <p class="muted">PAGO WEB · USDT EN RED TRON (TRC20)</p>
+    <p class="muted">PAGO WEB · REDES CRIPTO</p>
     <h1 id="product-title">CSV Quality Gate Plus</h1>
     <p class="muted" id="product-description">Obtén la herramienta, ejemplos, licencia MIT y cuatro pruebas. El sistema verifica la transferencia confirmada y habilita la descarga en esta misma página.</p>
 
     <section class="card" id="start-card">
       <h2 id="price-title">Precio base: 5 USD</h2>
-      <p id="price-note">El importe exacto incluye un sufijo único entre 0.101 y 0.199 USDT para identificar el pago; el total aparece antes de enviar fondos.</p>
+      <p id="price-note">El importe exacto aparece antes de pagar e incluye una pequeña fracción única para reconocer la transferencia automáticamente.</p>
       <div id="custom-form" hidden>
         <label for="custom-details"><strong>Describe el script local que necesitas</strong></label>
         <textarea id="custom-details" maxlength="1000" minlength="20" rows="5" style="display:block;width:100%;margin:10px 0;padding:12px;border-radius:10px;background:#0b1320;color:var(--ink);border:1px solid var(--line);font:inherit" placeholder="Ejemplo: organiza archivos de una carpeta por extensión, ofrece vista previa y permite elegir la carpeta desde la terminal."></textarea>
         <p class="muted">Solo utilidades locales de Python estándar. La descripción se procesa con Google Gemma 4; en el servicio gratuito, Google puede usar entradas y respuestas para mejorar sus productos y revisores humanos podrían procesarlas. No incluyas datos personales, claves ni contraseñas. La descripción no se guarda en el registro del pedido; el script preparado queda guardado localmente hasta completar la entrega. El script se prepara antes del pedido; si no se puede preparar, no se cobra.</p>
       </div>
-      <p class="warning"><strong>Envía USDT solo por TRON / TRC20.</strong> Una transferencia por otra red no se puede acreditar automáticamente.</p>
-      <label><input id="terms-check" type="checkbox"> Confirmo que revisaré el importe, usaré la red TRC20 y revisaré cualquier script antes de ejecutarlo.</label>
+      <label for="payment-method"><strong>Elige cómo pagar</strong></label>
+      <select id="payment-method" disabled><option value="">Cargando métodos disponibles…</option></select>
+      <p class="warning" id="network-warning">Selecciona una opción y usa exactamente esa red y activo.</p>
+      <label><input id="terms-check" type="checkbox"> Confirmo que revisaré el importe, la red y la dirección antes de enviar fondos.</label>
       <p class="muted">La herramienta valida la sintaxis del script; no ejecuta código generado ni garantiza que coincida con todos los casos de uso.</p>
       <button class="button" id="start-button" type="button" disabled>Conectando checkout…</button>
       <p id="availability" class="muted" role="status">Comprobando disponibilidad del checkout…</p>
@@ -59,8 +62,8 @@
     <section class="card" id="order-card" hidden>
       <h2>Pedido <span id="order-id"></span></h2>
       <dl>
-        <dt>Importe exacto</dt><dd><span id="amount"></span> USDT</dd>
-        <dt>Red</dt><dd>TRON (TRC20)</dd>
+        <dt>Importe exacto</dt><dd><span id="amount"></span> <span id="currency">USDT</span></dd>
+        <dt>Activo y red</dt><dd id="network"></dd>
         <dt>Vence</dt><dd id="expires"></dd>
       </dl>
       <p>Envía el importe exacto a esta dirección. La descarga se activa cuando la red confirma el pago.</p>
@@ -80,13 +83,14 @@
 <script>
 (() => {
   const start = document.getElementById('start-button');
+  const paymentMethod = document.getElementById('payment-method');
   const availability = document.getElementById('availability');
   const orderCard = document.getElementById('order-card');
   const message = document.getElementById('message');
   const catalog = {
-    csv_gate: {name:'CSV Quality Gate Plus', price:'5', description:'ZIP con la herramienta de validación CSV, ejemplos, licencia MIT y cuatro pruebas.'},
-    kit: {name:'Python Automation Pro Kit', price:'9', description:'ZIP con seis herramientas Python, manual bilingüe y pruebas.'},
-    custom: {name:'Script Python a medida', price:'15', description:'Un script local de Python estándar preparado para tu descripción y entregado en un ZIP después de confirmar el pago.', custom:true}
+    csv_gate: {name:'CSV Quality Gate Plus', price:'5', description:'ZIP con la herramienta de validación CSV, ejemplos, licencia MIT y cuatro pruebas.', downloadName:'csv-quality-gate-plus-v1-0-2.zip'},
+    kit: {name:'Python Automation Pro Kit', price:'9', description:'ZIP con seis herramientas Python, manual bilingüe y pruebas.', downloadName:'python_automation_pro_kit.zip'},
+    custom: {name:'Script Python a medida', price:'15', description:'Un script local de Python estándar preparado para tu descripción y entregado en un ZIP después de confirmar el pago.', custom:true, downloadName:'script-python-a-medida.zip'}
   };
   const requestedProduct = new URLSearchParams(location.search).get('product') || 'csv_gate';
   const product = Object.prototype.hasOwnProperty.call(catalog, requestedProduct) ? requestedProduct : 'csv_gate';
@@ -99,7 +103,7 @@
   document.getElementById('product-title').textContent = item.name;
   document.getElementById('product-description').textContent = item.description;
   document.getElementById('price-title').textContent = `Precio base: ${item.price} USD`;
-  document.getElementById('price-note').textContent = `El importe exacto incluye un sufijo único entre 0.101 y 0.199 USDT para identificar el pago; el total aparece antes de enviar fondos (aprox. ${item.price}.101–${item.price}.199 USDT).`;
+  document.getElementById('price-note').textContent = 'El importe exacto aparece antes de pagar e incluye una pequeña fracción única para reconocer la transferencia automáticamente.';
   if (item.custom) {
     document.getElementById('custom-form').hidden = false;
     start.textContent = 'Preparar script y ver importe';
@@ -114,6 +118,14 @@
       const cfg = await r.json();
       if (typeof cfg.api_base === 'string' && /^https:\/\/[a-z0-9-]+\.trycloudflare\.com$/i.test(cfg.api_base)) {
         apiBase = cfg.api_base;
+        const methodsResponse = await fetch(`${apiBase}/api/payment-methods`, {cache:'no-store'});
+        if (!methodsResponse.ok) throw new Error('payment methods unavailable');
+        const methodsData = await methodsResponse.json();
+        if (!Array.isArray(methodsData.methods) || methodsData.methods.length === 0) throw new Error('no payment methods');
+        paymentMethod.replaceChildren(...methodsData.methods.map(method => new Option(method.label, method.key)));
+        paymentMethod.disabled = false;
+        if (methodsData.methods.some(method => method.key === 'usdt_trc20')) paymentMethod.value = 'usdt_trc20';
+        updateNetworkWarning(methodsData.methods);
         start.disabled = false;
         start.textContent = item.custom ? 'Preparar script y ver importe' : 'Crear pedido y ver importe';
         availability.textContent = 'Checkout temporal disponible. Debes mantener esta computadora conectada hasta que termine el pago.';
@@ -124,6 +136,13 @@
     start.disabled = true;
     start.textContent = 'Checkout temporalmente no disponible';
     availability.textContent = 'Prueba de nuevo más tarde o paga con Telegram Stars desde la página del producto.';
+  }
+
+  function updateNetworkWarning(methods) {
+    const selected = methods.find(method => method.key === paymentMethod.value);
+    document.getElementById('network-warning').textContent = selected
+      ? selected.warning
+      : 'Selecciona una opción y usa exactamente esa red y activo.';
   }
 
   function restoreOrder() {
@@ -141,8 +160,12 @@
   function renderOrder(order) {
     document.getElementById('order-id').textContent = order.id;
     document.getElementById('amount').textContent = order.amount;
+    document.getElementById('currency').textContent = order.currency || 'USDT';
+    document.getElementById('network').textContent = order.network || 'TRON (TRC20)';
+    if (order.warning) document.getElementById('network-warning').textContent = order.warning;
     document.getElementById('address').textContent = order.address;
     document.getElementById('expires').textContent = new Date(order.expires_at * 1000).toLocaleString();
+    paymentMethod.disabled = true;
     orderCard.hidden = false;
     start.disabled = true;
   }
@@ -163,7 +186,7 @@
     try {
       const r = await fetch(`${apiBase}/api/orders`, {
         method:'POST', headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({product, details})
+        body:JSON.stringify({product, details, payment_method:paymentMethod.value})
       });
       const data = await r.json();
       if (!r.ok) throw new Error(data.error || 'No se pudo crear el pedido.');
@@ -210,7 +233,7 @@
       if (!r.ok) throw new Error('Descarga todavía no disponible.');
       const blob = await r.blob();
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = 'csv-quality-gate-plus-v1-0-2.zip'; a.click();
+      const a = document.createElement('a'); a.href = url; a.download = item.downloadName; a.click();
       setTimeout(() => URL.revokeObjectURL(url), 30000);
     } catch (err) {
       message.textContent = err.message || 'No se pudo descargar el archivo.';
@@ -226,7 +249,14 @@
   document.getElementById('check-button').addEventListener('click', checkStatus);
   document.getElementById('download-button').addEventListener('click', download);
   document.getElementById('copy-address').addEventListener('click', () => currentOrder && copyText(currentOrder.address, 'Dirección'));
-  document.getElementById('copy-amount').addEventListener('click', () => currentOrder && copyText(`${currentOrder.amount} USDT`, 'Importe'));
+  document.getElementById('copy-amount').addEventListener('click', () => currentOrder && copyText(`${currentOrder.amount} ${currentOrder.currency || 'USDT'}`, 'Importe'));
+  paymentMethod.addEventListener('change', async () => {
+    try {
+      const response = await fetch(`${apiBase}/api/payment-methods`, {cache:'no-store'});
+      const data = await response.json();
+      updateNetworkWarning(data.methods || []);
+    } catch (_) {}
+  });
   loadApi();
   setInterval(checkStatus, 15000);
 })();
