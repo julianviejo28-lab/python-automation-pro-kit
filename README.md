@@ -8,6 +8,8 @@ Automatiza tareas repetitivas con seis scripts de Python 3: organizador, renombr
 - Precio: **700 Telegram Stars (XTR)**. El coste de comprar Stars varía por país, impuestos y tienda; la factura muestra el total antes de confirmar.
 - Pago y entrega automática del ZIP dentro de Telegram tras la confirmación de Telegram.
 
+También está disponible [CSV Quality Gate Plus](csv-quality-gate.html), para revisar columnas requeridas, celdas vacías y claves duplicadas antes de importar un CSV. Cuesta 400 Stars y se entrega automáticamente tras la confirmación del pago.
+
 ## Compra
 
 Abre [Julián | Automatización Python en Telegram](https://t.me/Julian_sniper_bot?start=readme) y pulsa **Iniciar**. Lee `/terms`, acepta los términos y revisa la factura de Telegram Stars. Para problemas de pago o entrega, usa `/paysupport`.

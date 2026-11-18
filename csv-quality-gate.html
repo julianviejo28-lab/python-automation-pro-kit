@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Valida archivos CSV localmente: columnas requeridas, celdas vacías y claves duplicadas. Python 3.10+, ejemplos y cuatro pruebas unitarias.">
+  <link rel="canonical" href="https://julianviejo28-lab.github.io/python-automation-pro-kit/csv-quality-gate.html">
+  <meta property="og:type" content="product">
+  <meta property="og:title" content="CSV Quality Gate Plus — validación local de CSV">
+  <meta property="og:description" content="Comprueba columnas, valores vacíos y claves duplicadas antes de importar un CSV. Sin internet ni dependencias externas.">
+  <meta property="og:url" content="https://julianviejo28-lab.github.io/python-automation-pro-kit/csv-quality-gate.html">
+  <meta name="theme-color" content="#101827">
+  <title>CSV Quality Gate Plus — revisa tu CSV antes de importarlo</title>
+  <style>
+    :root { color-scheme:dark; --bg:#101827; --panel:#172338; --ink:#eff5ff; --muted:#b4c1d4; --green:#73e0b1; --line:#30415b; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:radial-gradient(ellipse at 80% 0%,#233957 0,transparent 42%),var(--bg); color:var(--ink); font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    a { color:var(--green); }
+    .wrap { width:min(880px,calc(100% - 32px)); margin:auto; }
+    header,footer { padding:22px 0; border-bottom:1px solid #ffffff18; }
+    footer { margin-top:48px; border-top:1px solid var(--line); border-bottom:0; color:var(--muted); }
+    .brand { color:var(--ink); text-decoration:none; font-weight:750; }
+    main { padding:60px 0; }
+    .eyebrow { color:var(--green); font-weight:700; text-transform:uppercase; letter-spacing:.12em; font-size:.78rem; }
+    h1 { font-size:clamp(2rem,6vw,3.8rem); line-height:1.08; letter-spacing:-.04em; }
+    h2 { margin-top:34px; }
+    .lead { color:var(--muted); font-size:1.2rem; }
+    .card { background:linear-gradient(150deg,#1c2c44,#152238); border:1px solid var(--line); border-radius:20px; padding:26px; margin:24px 0; }
+    .button { display:inline-flex; margin:12px 0; padding:13px 20px; border-radius:12px; color:#092218; background:var(--green); font-weight:800; text-decoration:none; }
+    .fine { color:var(--muted); font-size:.9rem; }
+    code,pre { background:#0b1320; border-radius:8px; }
+    code { padding:2px 6px; }
+    pre { padding:16px; overflow:auto; }
+    li { margin:.5em 0; }
+  </style>
+</head>
+<body>
+  <header><div class="wrap"><a class="brand" href="./">Julián · Automatización Python</a></div></header>
+  <main class="wrap">
+    <div class="eyebrow">CSV Quality Gate Plus · Python 3.10+</div>
+    <h1>Encuentra problemas en tu CSV antes de importarlo</h1>
+    <p class="lead">Define las columnas que deben existir y la clave que no debe repetirse. Recibe un informe JSON sobre columnas faltantes, valores vacíos y claves duplicadas. El programa solo lee el archivo; no lo modifica ni lo sube a internet.</p>
+
+    <section class="card" aria-label="Compra">
+      <h2>Descarga inmediata en Telegram</h2>
+      <p>ZIP con la herramienta de terminal, ejemplos, licencia MIT y cuatro pruebas unitarias.</p>
+      <p><strong>400 Telegram Stars (XTR)</strong></p>
+      <a class="button" href="https://t.me/Julian_sniper_bot?start=csv" target="_blank" rel="noopener noreferrer">Ver términos y obtener el ZIP</a>
+      <p class="fine">El precio que cuesta adquirir Stars varía por país, impuestos y tienda. Telegram muestra el total antes de confirmar. El bot envía el archivo solo después de que Telegram confirma el pago.</p>
+    </section>
+
+    <h2>Ejemplo</h2>
+    <pre><code>python csv_quality_gate.py clientes.csv --required email --required nombre --unique-key email</code></pre>
+    <ul>
+      <li>Comprueba si están las columnas obligatorias.</li>
+      <li>Cuenta celdas vacías y detecta claves duplicadas.</li>
+      <li>Devuelve un informe JSON y un código de salida útil para scripts y CI.</li>
+      <li>Funciona sin internet y sin instalar paquetes adicionales.</li>
+    </ul>
+
+    <p>Primero puedes <a href="csv-validator-online.html">probar gratis el validador en el navegador</a>. Esa muestra es de solo lectura y mantiene el archivo en tu dispositivo.</p>
+    <p class="fine">Licencia MIT: puedes usar y redistribuir el software conservando los avisos de copyright y licencia incluidos.</p>
+  </main>
+  <footer><div class="wrap">Julián · <a href="https://t.me/Julian_sniper_bot?start=csv">Ayuda y compras por Telegram</a></div></footer>
+</body>
+</html>
