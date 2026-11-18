@@ -10,7 +10,7 @@ Automatiza tareas repetitivas con seis scripts de Python 3: organizador, renombr
 
 ## Compra
 
-Abre [Julián | Automatización Python en Telegram](https://t.me/Julian_sniper_bot) y pulsa **Iniciar**. El checkout admite USDT en TRON, BNB Smart Chain o Arbitrum, además de TRX, SOL y BTC.
+Abre [Julián | Automatización Python en Telegram](https://t.me/Julian_sniper_bot?start=readme) y pulsa **Iniciar**. El checkout admite USDT en TRON, BNB Smart Chain o Arbitrum, además de TRX, SOL y BTC.
 
 Envía solo el monto y la red exactos que muestre el bot. Las transferencias cripto pueden ser irreversibles; nunca compartas claves privadas ni frases semilla. La alerta cripto del kit solo consulta precios públicos, no opera y no ofrece asesoría de inversión.
 
@@ -30,6 +30,6 @@ Six Python 3 utilities for file organization, bulk renaming, CSV cleanup, duplic
 
 ## Get the kit
 
-Open [Julián | Python Automation on Telegram](https://t.me/Julian_sniper_bot) and tap **Start**. The checkout currently supports USDT on TRON, BNB Smart Chain, or Arbitrum, plus TRX, SOL, and BTC.
+Open [Julián | Python Automation on Telegram](https://t.me/Julian_sniper_bot?start=readme) and tap **Start**. The checkout currently supports USDT on TRON, BNB Smart Chain, or Arbitrum, plus TRX, SOL, and BTC.
 
 Send only the exact amount on the network shown by the bot. Crypto transfers can be irreversible. Never share a private key or seed phrase. The crypto alert only reads public prices; it does not trade or provide investment advice.
