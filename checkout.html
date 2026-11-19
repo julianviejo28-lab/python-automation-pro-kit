@@ -64,6 +64,7 @@
       <dl>
         <dt>Importe exacto</dt><dd><span id="amount"></span> <span id="currency">USDT</span></dd>
         <dt>Activo y red</dt><dd id="network"></dd>
+        <dt id="minimum-label" hidden>Mínimo de depósito de Binance</dt><dd id="minimum-deposit" hidden></dd>
         <dt id="address-tag-label" hidden>Etiqueta / memo</dt><dd id="address-tag" hidden></dd>
         <dt>Vence</dt><dd id="expires"></dd>
       </dl>
@@ -125,7 +126,9 @@
         if (!methodsResponse.ok) throw new Error('payment methods unavailable');
         const methodsData = await methodsResponse.json();
         if (!Array.isArray(methodsData.methods) || methodsData.methods.length === 0) throw new Error('no payment methods');
-        paymentMethod.replaceChildren(...methodsData.methods.map(method => new Option(method.label, method.key)));
+        paymentMethod.replaceChildren(...methodsData.methods.map(method => new Option(
+          `${method.label} · mínimo ${method.min_deposit} USDT`, method.key
+        )));
         paymentMethod.disabled = false;
         if (methodsData.methods.some(method => method.network === 'TRX')) {
           paymentMethod.value = methodsData.methods.find(method => method.network === 'TRX').key;
@@ -167,6 +170,10 @@
     document.getElementById('amount').textContent = order.amount;
     document.getElementById('currency').textContent = order.currency || 'USDT';
     document.getElementById('network').textContent = order.network || 'TRON (TRC20)';
+    const minimum = typeof order.min_deposit === 'string' ? order.min_deposit : '';
+    document.getElementById('minimum-label').hidden = !minimum;
+    document.getElementById('minimum-deposit').hidden = !minimum;
+    document.getElementById('minimum-deposit').textContent = minimum ? `${minimum} USDT` : '';
     if (order.warning) document.getElementById('network-warning').textContent = order.warning;
     document.getElementById('address').textContent = order.address;
     const hasTag = typeof order.address_tag === 'string' && order.address_tag.length > 0;
