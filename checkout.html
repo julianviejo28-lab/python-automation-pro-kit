@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#101827">
   <meta property="og:type" content="product">
   <meta property="og:title" content="Checkout — CSV Quality Gate Plus">
-  <meta property="og:description" content="Elige una red habilitada para depósitos de USDT en Binance. Entrega automática tras la acreditación exacta.">
+  <meta property="og:description" content="Compra el Kit o CSV Quality Gate Plus con USDT. Entrega automática tras la acreditación exacta en Binance.">
   <link rel="canonical" href="https://julianviejo28-lab.github.io/python-automation-pro-kit/checkout.html">
   <title>Checkout — CSV Quality Gate Plus</title>
   <style>
@@ -45,11 +45,6 @@
     <section class="card" id="start-card">
       <h2 id="price-title">Precio base: 5 USD</h2>
       <p id="price-note">Total en USDT: precio base más una fracción única de $0.101 a $0.2999 para reconocer la transferencia. Verás el importe exacto antes de enviar.</p>
-      <div id="custom-form" hidden>
-        <label for="custom-details"><strong>Describe el script local que necesitas</strong></label>
-        <textarea id="custom-details" maxlength="1000" minlength="20" rows="5" style="display:block;width:100%;margin:10px 0;padding:12px;border-radius:10px;background:#0b1320;color:var(--ink);border:1px solid var(--line);font:inherit" placeholder="Ejemplo: organiza archivos de una carpeta por extensión, ofrece vista previa y permite elegir la carpeta desde la terminal."></textarea>
-        <p class="muted">Solo utilidades locales de Python estándar. La descripción se procesa con Google Gemma 4; en el servicio gratuito, Google puede usar entradas y respuestas para mejorar sus productos y revisores humanos podrían procesarlas. No incluyas datos personales, claves ni contraseñas. La descripción no se guarda en el registro del pedido; el script preparado queda guardado localmente hasta completar la entrega. El script se prepara antes del pedido; si no se puede preparar, no se cobra.</p>
-      </div>
       <label for="payment-method"><strong>Elige la red para pagar USDT</strong></label>
       <select id="payment-method" disabled><option value="">Cargando métodos disponibles…</option></select>
       <p class="warning" id="network-warning">Selecciona una opción y usa exactamente esa red y activo.</p>
@@ -80,7 +75,7 @@
       <button class="button" id="download-button" type="button" hidden>Descargar ZIP</button>
     </section>
 
-    <p class="muted">También puedes pagar con Telegram Stars desde la <a href="./csv-quality-gate.html">página del producto</a>. Si necesitas ayuda, <a href="https://t.me/Julian_sniper_bot" target="_blank" rel="noopener noreferrer">escríbenos por Telegram</a>.</p>
+    <p class="muted">Envía solo el importe exacto y la red que aparecen en tu pedido. La descarga se habilita cuando Binance acredita el depósito.</p>
   </main>
   <footer><div class="wrap">No envíes más de una transferencia por pedido. Revisa el total, la red y la dirección antes de pagar; la entrega espera la acreditación de Binance.</div></footer>
 <script>
@@ -94,9 +89,13 @@
   const catalog = {
     csv_gate: {name:'CSV Quality Gate Plus', price:'5', description:'ZIP con la herramienta de validación CSV, ejemplos, licencia MIT y cuatro pruebas.', downloadName:'csv-quality-gate-plus-v1-0-2.zip'},
     kit: {name:'Python Automation Pro Kit', price:'9', description:'ZIP con seis herramientas Python, manual bilingüe y pruebas.', downloadName:'python_automation_pro_kit.zip'},
-    custom: {name:'Script Python a medida', price:'15', description:'Un script local de Python estándar preparado para tu descripción y entregado en un ZIP después de confirmar el pago.', custom:true, downloadName:'script-python-a-medida.zip'}
   };
   const requestedProduct = new URLSearchParams(location.search).get('product') || 'csv_gate';
+  if (requestedProduct === 'custom') {
+    availability.textContent = 'El encargo de scripts a medida no está disponible en este checkout.';
+    start.disabled = true;
+    return;
+  }
   const product = Object.prototype.hasOwnProperty.call(catalog, requestedProduct) ? requestedProduct : 'csv_gate';
   const item = catalog[product];
   const tokenKey = `web-checkout-token:${product}`;
@@ -143,7 +142,7 @@
     } catch (_) {}
     start.disabled = true;
     start.textContent = 'Checkout temporalmente no disponible';
-    availability.textContent = 'Prueba de nuevo más tarde o paga con Telegram Stars desde la página del producto.';
+    availability.textContent = 'Prueba de nuevo más tarde o recarga el checkout.';
   }
 
   function updateNetworkWarning(methods) {
