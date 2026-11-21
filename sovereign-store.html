@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kali Sovereign OS v6.5 — Verified Automation Store</title>
+  <style>
+    :root { --bg:#090d16; --card:#111827; --border:#1f2937; --accent:#10b981; --accent2:#3b82f6; --text:#f3f4f6; --muted:#9ca3af; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+    .wrap { max-width:1040px; margin:0 auto; padding:28px 18px 64px; }
+    header { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; border-bottom:1px solid var(--border); padding-bottom:18px; margin-bottom:26px; }
+    .badge { display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:600; background:rgba(16,185,129,.15); color:var(--accent); border:1px solid rgba(16,185,129,.35); }
+    .status-pill { font-size:13px; color:var(--muted); background:var(--card); padding:6px 12px; border-radius:8px; border:1px solid var(--border); }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-bottom:28px; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; display:flex; flex-direction:column; justify-content:space-between; }
+    .card h3 { margin:8px 0 6px; font-size:17px; }
+    .card p { color:var(--muted); font-size:14px; margin:0 0 14px; }
+    .price-row { display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:12px; border-top:1px solid var(--border); }
+    .price { font-size:20px; font-weight:700; color:var(--accent); }
+    button, .btn { background:var(--accent); color:#04120c; font-weight:700; border:none; border-radius:8px; padding:10px 14px; cursor:pointer; text-decoration:none; font-size:14px; }
+    button.secondary { background:#1f2937; color:var(--text); }
+    .checkout-box { background:var(--card); border:1px solid var(--accent2); border-radius:14px; padding:22px; display:none; }
+    .checkout-box.active { display:block; }
+    label { display:block; font-size:13px; color:var(--muted); margin:10px 0 6px; }
+    select, textarea, input { width:100%; background:#0b1120; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:10px; font-size:14px; }
+    .invoice { margin-top:18px; padding:16px; border-radius:10px; background:#0b1120; border:1px solid #334155; }
+    .mono { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; word-break:break-all; font-size:13px; color:#93c5fd; }
+    .warn { font-size:12px; color:#fbbf24; margin-top:8px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <span class="badge">ESCROW VERIFIED • ZERO-TRUST BINANCE SPOT</span>
+        <h1 style="margin:8px 0 2px;font-size:26px;">Kali Sovereign Automation Store</h1>
+        <div style="color:var(--muted);font-size:14px;">SHA-256 pre-delivery proof • Instant ZIP unlock after on-chain USDT confirmation</div>
+      </div>
+      <div class="status-pill" id="api-status">Connecting to live backend...</div>
+    </header>
+
+    <div class="grid" id="catalog-grid">Loading catalog...</div>
+
+    <section class="checkout-box" id="checkout-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <h2 style="margin:0;font-size:20px;" id="sel-title">Checkout</h2>
+        <button class="secondary" onclick="closeCheckout()">Close</button>
+      </div>
+      <label for="net-select">USDT Network (Zero-Fee Exact Micro-Amount)</label>
+      <select id="net-select"></select>
+      <label for="details-input">Project Scope / Delivery Notes (optional for kits, required for Custom Rescue)</label>
+      <textarea id="details-input" rows="3" placeholder="Paste traceback, repo URL, or target workflow specs..."></textarea>
+      <div style="margin-top:14px;display:flex;gap:10px;align-items:center;">
+        <button id="create-btn" onclick="createOrder()">Generate Exact USDT Invoice</button>
+        <span id="form-msg" style="font-size:13px;color:#f87171;"></span>
+      </div>
+      <div class="invoice" id="invoice-panel" style="display:none;"></div>
+    </section>
+  </div>
+
+  <script>
+    let API_BASE = '';
+    let PRODUCTS = [];
+    let SELECTED = null;
+    let POLL_TIMER = null;
+
+    function validApiBase(url) {
+      return typeof url === 'string' && /^https:\/\/[a-z0-9.-]+/i.test(url.trim());
+    }
+
+    async function boot() {
+      const statusEl = document.getElementById('api-status');
+      try {
+        const cfgResp = await fetch('./checkout-config.json?t=' + Date.now(), { cache: 'no-store' });
+        if (cfgResp.ok) {
+          const cfg = await cfgResp.json();
+          if (validApiBase(cfg.api_base)) API_BASE = cfg.api_base.replace(/\/+$/, '');
+        }
+      } catch (_) {}
+
+      try {
+        const catResp = await fetch('./catalog-sovereign.json?t=' + Date.now(), { cache: 'no-store' });
+        if (catResp.ok) {
+          const catData = await catResp.json();
+          PRODUCTS = Array.isArray(catData.products) ? catData.products : [];
+        }
+      } catch (_) {}
+
+      if (API_BASE) {
+        try {
+          const pm = await fetch(API_BASE + '/api/payment-methods');
+          if (pm.ok) {
+            const pmData = await pm.json();
+            const sel = document.getElementById('net-select');
+            sel.innerHTML = '';
+            (pmData.methods || []).forEach(m => {
+              const opt = document.createElement('option');
+              opt.value = m.key;
+              opt.textContent = m.label + ' (' + m.network + ')';
+              sel.appendChild(opt);
+            });
+            statusEl.textContent = 'Backend Online • Instant Spot Checkout Ready';
+            statusEl.style.color = '#10b981';
+          } else {
+            statusEl.textContent = 'Backend offline (' + pm.status + ')';
+          }
+        } catch (err) {
+          statusEl.textContent = 'Tunnel unreachable — retrying on refresh';
+        }
+      } else {
+        statusEl.textContent = 'Checkout tunnel initializing...';
+      }
+
+      renderCatalog();
+      const params = new URLSearchParams(window.location.search);
+      const req = params.get('product');
+      if (req) {
+        const found = PRODUCTS.find(p => p.slug === req);
+        if (found) openCheckout(found.slug);
+      }
+    }
+
+    function renderCatalog() {
+      const grid = document.getElementById('catalog-grid');
+      if (!PRODUCTS.length) { grid.textContent = 'No products available yet.'; return; }
+      grid.innerHTML = PRODUCTS.map(p => `
+        <div class="card">
+          <div>
+            <span class="badge">${p.tag || 'Tool'}</span>
+            <h3>${p.title}</h3>
+            <p>${p.pain_summary || ''}</p>
+          </div>
+          <div class="price-row">
+            <span class="price">${Number(p.price_usdt).toFixed(2)} USDT</span>
+            <button onclick="openCheckout('${p.slug}')">Buy / Unlock</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openCheckout(slug) {
+      SELECTED = PRODUCTS.find(p => p.slug === slug);
+      if (!SELECTED) return;
+      document.getElementById('sel-title').textContent = SELECTED.title + ' — ' + Number(SELECTED.price_usdt).toFixed(2) + ' USDT';
+      document.getElementById('invoice-panel').style.display = 'none';
+      document.getElementById('form-msg').textContent = '';
+      document.getElementById('checkout-box').classList.add('active');
+      document.getElementById('checkout-box').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function closeCheckout() {
+      if (POLL_TIMER) clearInterval(POLL_TIMER);
+      document.getElementById('checkout-box').classList.remove('active');
+    }
+
+    async function createOrder() {
+      const msg = document.getElementById('form-msg');
+      msg.textContent = '';
+      if (!API_BASE || !SELECTED) { msg.textContent = 'Checkout backend unavailable right now.'; return; }
+      const net = document.getElementById('net-select').value || 'TRC20';
+      const details = document.getElementById('details-input').value || '';
+      const btn = document.getElementById('create-btn');
+      btn.disabled = true;
+      try {
+        const resp = await fetch(API_BASE + '/api/orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ product: SELECTED.slug, details, payment_method: net })
+        });
+        const data = await resp.json();
+        if (!resp.ok) { msg.textContent = data.detail || 'Error creating order'; return; }
+        showInvoice(data);
+      } catch (e) {
+        msg.textContent = 'Network error: ' + e.message;
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    function showInvoice(order) {
+      const box = document.getElementById('invoice-panel');
+      box.style.display = 'block';
+      box.innerHTML = `
+        <div><strong>Order #${order.id}</strong> — Send the <strong>EXACT</strong> amount below:</div>
+        <p style="font-size:22px;color:#10b981;font-weight:700;margin:8px 0;">${order.amount} ${order.currency}</p>
+        <div>Network: <strong>${order.network}</strong></div>
+        <div>Address: <span class="mono">${order.address}</span></div>
+        <div class="warn">${order.warning || 'Send exact amount including 4 decimals for instant automated confirmation.'}</div>
+        <div id="poll-state" style="margin-top:12px;font-weight:600;color:#93c5fd;">Waiting for on-chain Binance deposit confirmation...</div>
+      `;
+      if (POLL_TIMER) clearInterval(POLL_TIMER);
+      POLL_TIMER = setInterval(() => checkStatus(order), 8000);
+    }
+
+    async function checkStatus(order) {
+      try {
+        const resp = await fetch(API_BASE + '/api/orders/' + order.id + '/status', {
+          headers: { 'Authorization': 'Bearer ' + order.token }
+        });
+        if (!resp.ok) return;
+        const st = await resp.json();
+        const el = document.getElementById('poll-state');
+        if (st.download_available) {
+          clearInterval(POLL_TIMER);
+          el.innerHTML = `<span style="color:#10b981;">Payment verified!</span> <a class="btn" style="margin-left:10px;" href="${API_BASE}/api/orders/${order.id}/download?token=${encodeURIComponent(order.token)}" target="_blank">Download ZIP</a>`;
+        }
+      } catch (_) {}
+    }
+
+    boot();
+  </script>
+</body>
+</html>
