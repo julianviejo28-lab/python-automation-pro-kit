@@ -1,57 +1,35 @@
-# Python Automation Pro Kit
+# Python Automation Pro Kit & Kali Sovereign Automation Store
 
-Automatiza tareas repetitivas con seis scripts de Python 3: organizador, renombrador por lotes, limpiador CSV, detector de duplicados, copias ZIP rotativas y avisos informativos de precio cripto. Prueba primero el [auditor CSV gratuito](https://github.com/julianviejo28-lab/python-automation-pro-kit/blob/main/demo/README.md), [abre el cuaderno gratuito en Kaggle](https://www.kaggle.com/code/salmaviejo/csv-audit-with-python-missing-cells-and-duplicates) o [descarga el paquete ZIP gratis](https://github.com/julianviejo28-lab/python-automation-pro-kit/releases/download/csv-audit-preview-v1.0.0/csv_audit_preview.zip).
+Automatiza tareas repetitivas con herramientas CLI en Python 3.10+ (pure stdlib, pruebas unitarias incluidas) y **Rescate Express a Medida ($29 USDT)** disponible **24/7**.
 
-- Python 3.9+, Windows, macOS y Linux.
-- Sin dependencias externas.
-- Guía bilingüe y pruebas incluidas.
-- Compra web: [paga el Kit con USDT desde $9](https://julianviejo28-lab.github.io/python-automation-pro-kit/checkout.html?product=kit). Se añade una fracción de $0.101 a $0.2999 USDT para reconocer el pago; verás el total exacto, la red y la dirección antes de enviar. La descarga se habilita cuando Binance acredita el depósito exacto.
+- **Tienda Completa en Vivo (18 redes USDT + SHA-256 Escrow):** https://julianviejo28-lab.github.io/python-automation-pro-kit/sovereign-store.html
+- **Checkout Rápido Kit ($9 USD en USDT):** https://julianviejo28-lab.github.io/python-automation-pro-kit/checkout.html?product=kit
+- **Rescate Express / Script a Medida ($29 USDT):** https://julianviejo28-lab.github.io/python-automation-pro-kit/sovereign-store.html?product=custom
+- **Demo CSV Gratuita en Kaggle:** https://www.kaggle.com/code/salmaviejo/csv-audit-with-python-missing-cells-and-duplicates
+- **Auditor CSV ZIP Gratis:** https://github.com/julianviejo28-lab/python-automation-pro-kit/releases/download/csv-audit-preview-v1.0.0/csv_audit_preview.zip
 
-También está disponible [CSV Quality Gate Plus](https://julianviejo28-lab.github.io/python-automation-pro-kit/csv-quality-gate.html), para revisar columnas requeridas, celdas vacías y claves duplicadas antes de importar un CSV. Cuesta desde $5 USD, pagaderos en USDT por el checkout web.
+## Catálogo Verificado Disponible (Pago USDT Spot Real)
 
-El checkout web es un servicio temporal alojado desde la computadora del vendedor; vuelve a intentar más tarde si no responde. Los encargos de scripts a medida no están disponibles ahora.
+| Producto | Precio | Categoría | Checkout Directo |
+| --- | --- | --- | --- |
+| **Python Automation Pro Kit (Full Bundle)** (`kit`) | `9.00 USDT` | Best Seller | [Comprar / Checkout](https://julianviejo28-lab.github.io/python-automation-pro-kit/checkout.html?product=kit) |
+| **CSV Quality Gate Plus v1.0.2** (`csv_gate`) | `5.00 USDT` | Quick Start | [Comprar / Checkout](https://julianviejo28-lab.github.io/python-automation-pro-kit/checkout.html?product=csv_gate) |
+| **Rescate Express Python / Bot / API (15 min)** (`custom`) | `29.00 USDT` | Custom Service | [Comprar / Checkout](https://julianviejo28-lab.github.io/python-automation-pro-kit/sovereign-store.html?product=custom) |
+| **SFTP Batch File Watcher & Alerting** (`sftp_batch_file_watcher`) | `45.00 USDT` | Sovereign CLI | [Comprar / Checkout](https://julianviejo28-lab.github.io/python-automation-pro-kit/sovereign-store.html?product=sftp_batch_file_watcher) |
+| **Log Anomaly & Uptime Sentinel** (`log_anomaly_sentinel`) | `45.00 USDT` | Sovereign CLI | [Comprar / Checkout](https://julianviejo28-lab.github.io/python-automation-pro-kit/sovereign-store.html?product=log_anomaly_sentinel) |
+| **Telegram Webhook Health Monitor** (`telegram_webhook_monitor`) | `45.00 USDT` | Sovereign CLI | [Comprar / Checkout](https://julianviejo28-lab.github.io/python-automation-pro-kit/sovereign-store.html?product=telegram_webhook_monitor) |
 
-## Compra
-
-Para pagar con USDT en la web, [abre el checkout del Kit](https://julianviejo28-lab.github.io/python-automation-pro-kit/checkout.html?product=kit). Revisa el importe exacto, la red y la dirección antes de transferir; la descarga se habilita después de la acreditación exacta de Binance.
-
-Las alertas cripto del kit solo consultan precios públicos, no operan y no ofrecen asesoría de inversión.
-
-La [página del producto](https://julianviejo28-lab.github.io/python-automation-pro-kit/) incluye detalles, demostraciones gratuitas y checkout web USDT.
-
-## Guías gratuitas
-
-- [Organizar Descargas con Python](https://julianviejo28-lab.github.io/python-automation-pro-kit/organizar-descargas-python.html)
-- [Renombrar archivos en lote](https://julianviejo28-lab.github.io/python-automation-pro-kit/renombrar-archivos-python.html)
-- [Limpiar y combinar CSV](https://julianviejo28-lab.github.io/python-automation-pro-kit/limpiar-csv-python.html)
-- [Detectar archivos duplicados](https://julianviejo28-lab.github.io/python-automation-pro-kit/detectar-duplicados-python.html)
-- [Crear copias ZIP rotativas](https://julianviejo28-lab.github.io/python-automation-pro-kit/copias-seguridad-python.html)
+### Cómo funciona el Escrow Cero-Confianza
+1. Elige cualquier herramienta o **Rescate Express** y selecciona tu red (`TRC20`, `BEP20`, `Polygon`, `Arbitrum`, `SOL`, etc.).
+2. El servidor asigna una factura única con 4 decimales exactos en Binance Spot y hash `SHA-256` verificable pre-pago.
+3. Tras acreditarse el depósito on-chain, el `.zip` completo y las pruebas se desbloquean al instante.
 
 ---
 
-# Python Automation Pro Kit (English)
+## English Overview
 
-Six Python 3 utilities for file organization, bulk renaming, CSV cleanup, duplicate detection, rotating ZIP backups, and informational crypto price alerts. Try the free [read-only CSV audit preview](https://github.com/julianviejo28-lab/python-automation-pro-kit/blob/main/demo/README.md), [open the free Kaggle notebook](https://www.kaggle.com/code/salmaviejo/csv-audit-with-python-missing-cells-and-duplicates), or [download its ZIP bundle](https://github.com/julianviejo28-lab/python-automation-pro-kit/releases/download/csv-audit-preview-v1.0.0/csv_audit_preview.zip) first.
+Zero-dependency Python automation tools, CLI monitors, CSV validators, and 24/7 **Custom Python Rescue & Bot Automation ($29 USDT)** backed by pre-payment SHA-256 build proofs and instant Binance Spot unlock.
 
-- Python 3.9+, Windows, macOS, and Linux.
-- No external dependencies.
-- Bilingual guide and tests included.
-- Web checkout: [pay for the Kit with USDT from $9](https://julianviejo28-lab.github.io/python-automation-pro-kit/checkout.html?product=kit). A $0.101–$0.2999 USDT payment identifier is added; the exact total, network, and address are shown before payment. The download unlocks after Binance credits the exact deposit.
-
-## Get the kit
-
-To pay with USDT on the web, [open the Kit checkout](https://julianviejo28-lab.github.io/python-automation-pro-kit/checkout.html?product=kit). Review the exact amount, network, and address before sending; the download unlocks after Binance credits the exact deposit.
-
-The crypto alert only reads public prices; it does not trade or provide investment advice. Custom script orders are unavailable right now.
-
-Also available: [CSV Quality Gate Plus](https://julianviejo28-lab.github.io/python-automation-pro-kit/csv-quality-gate.html), from a $5 USD base price payable in USDT through the web checkout.
-
-The [product page](https://julianviejo28-lab.github.io/python-automation-pro-kit/) has product details, free demos, and the web USDT checkout. The checkout is a temporary service hosted from the seller's computer; try again later if it is unavailable. Custom script orders are unavailable right now.
-
-## Free guides
-
-- [Organize a downloads folder](https://julianviejo28-lab.github.io/python-automation-pro-kit/organizar-descargas-python.html)
-- [Bulk rename files](https://julianviejo28-lab.github.io/python-automation-pro-kit/renombrar-archivos-python.html)
-- [Clean and merge CSV files](https://julianviejo28-lab.github.io/python-automation-pro-kit/limpiar-csv-python.html)
-- [Find duplicate files](https://julianviejo28-lab.github.io/python-automation-pro-kit/detectar-duplicados-python.html)
-- [Create rotating ZIP backups](https://julianviejo28-lab.github.io/python-automation-pro-kit/copias-seguridad-python.html)
+- Open **Sovereign Store**: https://julianviejo28-lab.github.io/python-automation-pro-kit/sovereign-store.html
+- Order **Custom Automation Rescue**: https://julianviejo28-lab.github.io/python-automation-pro-kit/sovereign-store.html?product=custom
+- Free guides: [Organize Downloads](https://julianviejo28-lab.github.io/python-automation-pro-kit/organizar-descargas-python.html) · [Bulk Rename](https://julianviejo28-lab.github.io/python-automation-pro-kit/renombrar-archivos-python.html) · [Clean CSV](https://julianviejo28-lab.github.io/python-automation-pro-kit/limpiar-csv-python.html) · [Find Duplicates](https://julianviejo28-lab.github.io/python-automation-pro-kit/detectar-duplicados-python.html) · [Rotating Backups](https://julianviejo28-lab.github.io/python-automation-pro-kit/copias-seguridad-python.html)
