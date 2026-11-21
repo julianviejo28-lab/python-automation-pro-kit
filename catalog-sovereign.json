@@ -1,5 +1,5 @@
 {
-  "updated_at": 1795222535,
+  "updated_at": 1795223025,
   "portal_version": "6.5.0",
   "api_base": "https://interests-remark-alone-atm.trycloudflare.com",
   "products": [
@@ -26,6 +26,15 @@
       "price_usdt": 29.0,
       "checkout_url": "https://julianviejo28-lab.github.io/python-automation-pro-kit/sovereign-store.html?product=custom",
       "tag": "Custom Service"
+    },
+    {
+      "slug": "sftp_batch_file_watcher",
+      "title": "SFTP Batch File Watcher & Alerting",
+      "pain_summary": "Herramienta CLI autónoma verificada en Kali.",
+      "price_usdt": 45.0,
+      "checkout_url": "https://julianviejo28-lab.github.io/python-automation-pro-kit/sovereign-store.html?product=sftp_batch_file_watcher",
+      "sha256_preview": "032937379690bb63",
+      "tag": "Sovereign CLI"
     },
     {
       "slug": "log_anomaly_sentinel",
