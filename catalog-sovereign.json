@@ -1,0 +1,49 @@
+{
+  "updated_at": 1795222242,
+  "portal_version": "6.5.0",
+  "api_base": "https://interests-remark-alone-atm.trycloudflare.com",
+  "products": [
+    {
+      "slug": "kit",
+      "title": "Python Automation Pro Kit (Full Bundle)",
+      "pain_summary": "Suite completa de scrapers, limpiadores CSV/Excel, monitores y utilidades Python listas para producción.",
+      "price_usdt": 9.0,
+      "checkout_url": "https://julianviejo28-lab.github.io/python-automation-pro-kit/checkout.html?product=kit",
+      "tag": "Best Seller"
+    },
+    {
+      "slug": "csv_gate",
+      "title": "CSV Quality Gate Plus v1.0.2",
+      "pain_summary": "Validador automático de calidad, esquema y duplicados para pipelines CSV/ETL antes de cargar a producción.",
+      "price_usdt": 5.0,
+      "checkout_url": "https://julianviejo28-lab.github.io/python-automation-pro-kit/checkout.html?product=csv_gate",
+      "tag": "Quick Start"
+    },
+    {
+      "slug": "custom",
+      "title": "Rescate Express Python / Bot / API (15 min)",
+      "pain_summary": "Diagnóstico, reparación o automatización a medida entregada en ZIP sellado con verificación SHA-256 y garantía Escrow.",
+      "price_usdt": 29.0,
+      "checkout_url": "https://julianviejo28-lab.github.io/python-automation-pro-kit/sovereign-store.html?product=custom",
+      "tag": "Custom Service"
+    },
+    {
+      "slug": "log_anomaly_sentinel",
+      "title": "Log Anomaly & Uptime Sentinel",
+      "pain_summary": "Herramienta CLI autónoma verificada en Kali.",
+      "price_usdt": 45.0,
+      "checkout_url": "https://julianviejo28-lab.github.io/python-automation-pro-kit/sovereign-store.html?product=log_anomaly_sentinel",
+      "sha256_preview": "005a6e54c40009de",
+      "tag": "Sovereign CLI"
+    },
+    {
+      "slug": "telegram_webhook_monitor",
+      "title": "Telegram Webhook Health Monitor",
+      "pain_summary": "Herramienta CLI autónoma verificada en Kali.",
+      "price_usdt": 45.0,
+      "checkout_url": "https://julianviejo28-lab.github.io/python-automation-pro-kit/sovereign-store.html?product=telegram_webhook_monitor",
+      "sha256_preview": "afdae7bb188f49e0",
+      "tag": "Sovereign CLI"
+    }
+  ]
+}
